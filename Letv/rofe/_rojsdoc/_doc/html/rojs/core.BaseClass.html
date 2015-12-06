@@ -1,0 +1,282 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>core.BaseClass</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>core.BaseClass</h1>
+		<p>描述 : 所有类的基类</p>
+		<p>作者 : </p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>val</td>
+						
+						<td>
+							
+							提供统一设置|获取可输入框值的方法；因为对Jquery的val函数作了扩展成value的原因；目的是把提示内容和真正的实在内容作区分
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>element</td>
+												<td>HTMLElement</td>
+												<td>
+													
+													可输入框的Dom（如input、select、textarea）
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>dispose</td>
+						
+						<td>
+							
+							释放对象所持有的资源。
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>RO.core.BaseClass.get</td>
+						
+						<td>
+							
+							根据guid获取实例过的对象
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>guid</td>
+												<td>Number</td>
+												<td>
+													
+													对象实例的ID
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>RO.core.BaseClass.extend</td>
+						
+						<td>
+							
+							类继承
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>SubClass</td>
+												<td>Function</td>
+												<td>
+													
+													子类
+												</td>
+											</tr>
+										
+									
+											
+											<tr>
+												<td>BaseClass</td>
+												<td>Function</td>
+												<td>
+													
+													父类，默认是RO.core.BaseClass
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>RO.core.BaseClass</td>
+				<td>RO.core.BaseClass类的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+ 		vra bassClass = new RO.core.BaseClass();
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

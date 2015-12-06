@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Send</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+<style type="text/css">
+</style>
+
+</head>
+<body id="lbl_test">
+	<h2>Send</h2>
+	<form class="ui-form" id="frmInfo">
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">表单项文本</label>
+			<div class="ui-form-box">
+				<p class="ui-form-text">文本内容</p>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">
+				<span class="ui-form-required">*</span>表单项文本
+			</label>
+			<div class="ui-form-box">
+				<input type="text" class="ui-form-input" name="require" ro-validata="require" ro-require="请输入正常值">
+				<span class="ui-tiptext"></span>
+				<p class="ui-tiptext ui-tiptext-message">提示：填写网站名称，如：乐视网</p>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">
+				<span class="ui-form-required">*</span>表单项文本
+			</label>
+			<div class="ui-form-box">
+				<input type="text" class="ui-form-input" ro-validata="number"  ro-number="请输入数值">
+				<span class="ui-tiptext"></span>
+				<p class="ui-tiptext ui-tiptext-message">提示：填写网站名称，如：乐视网</p>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">
+				<span class="ui-form-required">*</span>表单项文本
+			</label>
+			<div class="ui-form-box">
+				<input type="text" class="ui-form-input J_defaultTip" data-title="请输入不超过100字符的串" ro-validata="blength[0,10]" ro-blength="超出了可输入范围">
+				<span class="ui-tiptext"></span>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">
+				<span class="ui-form-required">*</span>表单项文本
+			</label>
+			<div class="ui-form-box">
+				<textarea class="ui-form-textarea"></textarea>
+				<span class="ui-tiptext"></span>
+				<p class="ui-tiptext ui-tiptext-message">提示：填写网站名称，如：乐视网</p>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">下拉选择</label>
+			<div class="ui-form-box">
+				<select class="ui-form-select">
+					<option>请选择</option>
+					<option>选项一</option>
+					<option>选项二</option>
+				</select>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">
+				<span class="ui-form-required">*</span>验证码
+			</label>
+			<div class="ui-form-box">
+				<input type="text" class="ui-form-input ui-form-checkcode">
+				<!--<img src="https://omeo.alipay.com/service/checkcode?sessionID=82012ab6b1f4ed9e675fb9092a25cb3b&amp;r=0.9321065918075809" class="ui-checkcode-img">-->
+				<a href="javascript:void(0)">看不清，换一张</a>
+				<p class="ui-form-text ui-form-explain">请输入右图中字符，不区分大小写。</p>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label"></label>
+			<div class="ui-form-box">
+				<input type="submit" value="确定" class="ui-button ui-button-default">
+				<input type="button" value="取消" class="ui-button ui-button-disabled">
+			</div>
+		</div>
+	</form>
+
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+	$(function(){
+		// 例1
+		seajs.use('send', function(Send){
+			new Send({
+				container:"#lbl_test" //lbl_test,frmInfo
+				,"successText":"验证成功耶"
+                ,isAutoHideTip:false
+                ,hasTips:true
+				,goOpts:{
+					"success":function(){
+                        log(this.tips)
+						console.log("GO success");
+					}
+					,"fail":function(){
+						console.log("GO fail");
+					}
+    				,"url":"/api"
+                    ,"type":"get"
+                    ,"lock":".ui-button-default"
+                    //,"group":"group1"
+                    ,"repeatError":function(){
+                        alert("请不要重复提交");
+                    }
+    				,"data":{u:"k",t:"r"}
+				}
+                ,"tipsOpts":{
+                    //"target":
+                }
+			});
+		});
+	});
+	</script>
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

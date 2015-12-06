@@ -1,0 +1,517 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Tips</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Tips</h1>
+		<p>描述 : 提示框</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://localhost:9000/_demo/m/tips/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opts</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>opts.target</td>
+					<td>String</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						目标Dom，即被Tip的小三角指向的
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.content</td>
+					<td>String</td>
+					<td>
+						
+						内容
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.zIndex</td>
+					<td>String</td>
+					<td>
+						
+						组件DOM的Sytle.z-index值,默认1001
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.width</td>
+					<td>String</td>
+					<td>
+						
+						组件宽度,默认300
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.parent</td>
+					<td>String</td>
+					<td>
+						
+						放置当前Tip的Dom的容器
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.hasCloseBtn</td>
+					<td>String</td>
+					<td>
+						
+						是否有&#34;X&#34;关闭按钮,默认有X关闭功能
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.offset</td>
+					<td>Object</td>
+					<td>
+						
+						偏移值
+
+						
+							<table class="ui-table">
+								<tr>
+									<th>参数名称</th>
+									<th>参数类型</th>
+									<th>说明</th>
+								</tr>
+								
+										
+										<tr>
+											<td>opts.offset.x</td>
+											<td>String</td>
+											<td>
+												
+												横坐标上的偏移值，默认值0
+											</td>
+										</tr>
+									
+								
+										
+										<tr>
+											<td>opts.offset.y</td>
+											<td>String</td>
+											<td>
+												
+												纵坐标上的偏移值，默认值0
+											</td>
+										</tr>
+									
+								
+							</table>
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.classes</td>
+					<td>Object</td>
+					<td>
+						
+						样式配置
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.show</td>
+					<td>function</td>
+					<td>
+						
+						组件被显示时的回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.cancel</td>
+					<td>function</td>
+					<td>
+						
+						组件被关闭时的回调
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>setStyle</td>
+						
+						<td>
+							
+							设置显示的位置和样式
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>width</td>
+												<td>Number</td>
+												<td>
+													
+													Tips的宽度
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>setDirection</td>
+						
+						<td>
+							
+							设置方向
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>type</td>
+												<td>String</td>
+												<td>
+													
+													箭头上下左右的样式名
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getDom</td>
+						
+						<td>
+							
+							获取当前Tip的Dom
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>setContent</td>
+						
+						<td>
+							
+							设置Tip显示的内容
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>value</td>
+												<td>String</td>
+												<td>
+													
+													显示的内容
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>show</td>
+						
+						<td>
+							
+							设置Tip为显示状态
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>width</td>
+												<td>Number</td>
+												<td>
+													
+													Tips的宽度,可选参数
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>hide</td>
+						
+						<td>
+							
+							设置Tip为隐藏状态
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>close</td>
+						
+						<td>
+							
+							设置Tip为隐藏状态且移除Dom
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Tips</td>
+				<td>Tips的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+            seajs.use(&#39;tips&#39;, function(Tips){
+                
+                var tip = new Tips({
+                    content:&#34;我就是Tip提示信息&#34;
+                    ,zIndex:10009
+                    ,width:500
+                    ,target:&#34;#btnTip&#34;
+                    ,offset:{
+                        y:0
+                        ,x:0
+                    }
+                    ,hasCloseBtn:true
+                    ,parent:null
+                    ,cancel:function(){                     
+                        console.log(&#34;callback cancel guid:&#34; + this.guid)
+                    }
+                    ,show:function(){                       
+                        console.log(&#34;callback show guid:&#34; + this.guid)
+                    }
+                });
+                //tip.setContent(12399);
+            }); 
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

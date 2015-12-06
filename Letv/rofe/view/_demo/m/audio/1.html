@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Audio</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+
+<style type="text/css">
+.json{
+
+}
+.json .key{
+	color:#2c3;
+}
+.json .val{
+	color:#f63;
+}
+.json .mao{
+	color:#2c3;
+	display:inline-block;
+	margin-right:5px;
+}
+.json .bln{
+	color:#00f;
+}
+.json .val.num{
+	color:#cc00ff;
+}
+.json .block{
+	padding-left:40px;
+	line-height:20px;
+	border-left:1px dotted #ccc;
+}
+#txtJson{
+	width:800px;
+	/*margin:0 auto;*/
+	height:100px;
+	display:block;
+}
+
+.mao,.key{cursor:pointer;}
+</style>
+<script type="text/javascript">
+	var v;
+	function preview(obj){
+		//var dialog = window.open("about:blank");
+		//dialog.document.write($("txtJson").value);
+		v = obj || $("#txtJson").val().replace(/^\s+|\s+$/,"");
+		if(v == ""){
+			$("#lblShow").html("请输入要查看的json数据");
+			return
+		};
+		try{
+			v = window.eval('(' + v + ')');
+		}catch(ex){
+			//$("#lblShow").html('请输入正确json数据格式(未尾不要把";"分号等)');
+			//return
+		}
+		$("#lblShow").html(showJson(v));
+
+		$(".key,.mao").click(function(){
+			onOff(this);
+		})
+	};
+	function appendPreview(obj){
+		//var dialog = window.open("about:blank");
+		//dialog.document.write($("txtJson").value);
+		v = obj || $("#txtJson").val().replace(/^\s+|\s+$/,"");
+		if(v == ""){
+			$("#lblShow").html("请输入要查看的json数据");
+			return
+		};
+		try{
+			v = window.eval('(' + v + ')');
+		}catch(ex){
+			//$("#lblShow").html('请输入正确json数据格式(未尾不要把";"分号等)');
+			//return
+		}
+		$("#lblShow").append(showJson(v));
+
+		$(".key,.mao").click(function(){
+			onOff(this);
+		})
+	};
+
+	function showJson(v,isKey){
+		var html = [];
+		if(v == null)return '<span class="val">"null"</span>';
+		if(isKey && typeof(v) == "number")return '<span class="key">' + v + '</span>';
+		if(typeof(v) == "number")return '<span class="val num">' + v + '</span>';
+		if(isKey && typeof(v) == "string")return '<span class="key">' + v + '</span>';
+		if(typeof(v) == "string")return '<span class="val">"' + dealValue(v) + '"</span>';
+		if(typeof(v) == "boolean")return '<span class="bln">' + dealValue(v) + '</span>';
+		if(typeof(v) == "object" && v.length == null){
+			for(var i in v){
+				html.push('<div class="block">');
+				html.push(showJson(i,true));
+				html.push('<span class="mao">:</span>');
+				html.push(showJson(v[i]));
+				html.push('</div>')
+			}
+			return  html.join("");
+		}else if(typeof(v) == "object"){
+			for(var i = 0; i < v.length; i++){
+				html.push('<div class="block">');
+				html.push(showJson(i,true));
+				html.push('<span class="mao">:</span>');
+				html.push(showJson(v[i]));
+				html.push('</div>')
+			}
+			return  html.join("");
+		}else{
+			return dealValue(v);
+		}
+	}
+
+	function dealValue(str){
+		if(typeof(str) == "boolean"){
+			return str;
+		}
+		str = str || "";
+		str = str.replace(/\s/g,"&nbsp;");
+		return str || "";
+	}
+
+	function onOff(element){
+		element = $(element);
+		var mao = null;
+		if(element.hasClass("mao")){
+			mao = element;
+		}else if(element.siblings(".mao")){
+			mao = element.siblings(".mao");
+		}else{
+			alert("出错了");
+			return;
+		}
+
+		if(element.siblings(".block").length < 1){
+			return;
+		}
+
+		var content = $.trim(mao.html());
+		if(content == ":"){
+			mao.html(": ----------+");
+			element.siblings(".block").hide();
+		}else{
+			mao.html(": ");
+			element.siblings(".block").show();
+		}
+	}
+
+	function getClassObject(){
+
+	}
+</script>
+</head>
+<body>
+	<h2>Audio</h2>
+	<button id="btn1">点此添加</button>
+	<button id="btn3">点此播放</button>
+	<button id="btn2">点此暂停</button>
+	<button id="btn5">更改音频</button>
+	<button id="btn4">点此查看错误信息</button>
+	<div id="audioContainer">
+	</div>
+	<div class="json" id="lblShow">
+	</div>
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+	$(function(){
+		var player = null;
+
+		// 添加
+		$("#btn1").click(function(){
+			seajs.use('audio', function(Audio){
+				player = new Audio({
+					"container":"#audioContainer"
+					,"url":"http://music.baidu.com/cms/app/muplayer/test_mp3/1.mp3"
+					,"autoplay":false
+					,propertys:{
+			    		loop:"loop"				// 是否循环播放
+			    		,controls:"controls"	// 是否显示操作控件
+			    		,autoplay:"autoplay"	// 是否自动播放
+					}
+					,events:{
+						pause:function(){
+							console.log("音频被暂停了");
+						}
+						,play:function(){
+							console.log("音频被播放了");
+							log(this.propertys("volume",0.9))
+							log(this.canPlayType("audio/mp3"))
+						}
+					}
+					,width:500
+					,height:300
+				});
+			});
+		});
+		// 暂停
+		$("#btn2").click(function(){
+			player && player.pause();
+		});
+		// 播放
+		$("#btn3").click(function(){
+			player && player.play();
+		});
+		// 到更改音频
+		$("#btn5").click(function(){
+			player && player.propertys("src","http://localhost/audio.mp3");
+			// 去掉自动播放
+			player && player.propertys("autoplay","")
+		});
+		// 查看错误信息
+		$("#btn4").click(function(){
+			alert(player && player.getErrorInfo());
+		});
+	});
+
+	</script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

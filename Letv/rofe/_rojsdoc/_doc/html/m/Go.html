@@ -1,0 +1,313 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Go</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Go</h1>
+		<p>描述 : AJAX     *  未实现push队列的提交方式，有需要时再补上</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://10.154.156.120:9000/_demo/m/go/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opts</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>opts.url</td>
+					<td>Function</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						提交数据的URL
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.success</td>
+					<td>Function</td>
+					<td>
+						
+						表单验证单控件成功时的回调,参数为AJAX的数据
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.fail</td>
+					<td>Function</td>
+					<td>
+						
+						表单验证单控件失败时的回调，参数为什么类型的错误(ajaxError,customError)
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.lock</td>
+					<td>Object</td>
+					<td>
+						
+						防重复提交DOM,一般是被点击的按钮
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.isPush</td>
+					<td>Object</td>
+					<td>
+						
+						是否以队列方式提交 --- debug --- 未实现
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.</td>
+					<td>Object</td>
+					<td>
+						
+						其它$.ajax的配置参数
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>abort</td>
+						
+						<td>
+							
+							中断本次AJAX请求
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>addLock</td>
+						
+						<td>
+							
+							添加LOCK状态
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>removeLock</td>
+						
+						<td>
+							
+							移除LOCK状态
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>isLock</td>
+						
+						<td>
+							
+							检查是否被LOCK
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>setSetup</td>
+						
+						<td>
+							
+							设置全局 AJAX 默认选项,和$.ajaxSetup的使用方式一致
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Go</td>
+				<td>Go的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+            var go = new Go({
+            	url:&#34;/&#34;
+            	,success:function(){}
+            	,fail:function(){}
+            	,fail:function(){}
+            	,lock:&#34;.btnSubmit&#34;
+            });
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+
+.clear{
+    height: 0;
+    clear: both;
+    overflow: hidden;
+}
+.clearfix{
+    &:after{
+        content: '.';
+        clear:both;
+        height: 0;
+        display:block;
+        visibility: hidden;
+    }
+}

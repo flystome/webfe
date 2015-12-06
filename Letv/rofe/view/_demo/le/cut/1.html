@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cut</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+<style type="text/css">
+    body{padding:10px;font-size: 16px}
+    
+    h2{
+        text-shadow:1px 1px 2px #333;
+        color:#000;
+        font-family:"微软雅黑";
+        margin: 20px 0;
+    }
+
+    div{margin:0 auto;}
+    div.ui-button{
+        margin:20px auto;
+        display:block;
+        width: 50px;
+    }
+
+    .ui-box{
+        border: 1px solid #eee;
+        width:300px;
+        height:300px;
+        background: #666;
+        overflow:hidden;
+        position: relative;
+    }
+    .ui-box img{
+        margin:0 auto;
+        display:block;
+        width:100%;
+        height:100%;
+        position: relative;
+        z-index:1;
+        top:0;
+    }
+    .ui-load,.ui-load .ui-load-bg1,.ui-load .ui-load-bg2,.ui-load .ui-load-bg3{color:#fff;width:6em;height:6em;border-radius:6em;}
+    .ui-load{
+        font-size:10px;
+        position:absolute;
+        left:50%;
+        top:50%;
+        margin-left:-3em;
+        margin-top:-3em;
+        -webkit-animation: spin 0.4s infinite linear;
+        -moz-animation: spin 0.4s infinite linear;
+        -o-animation: spin 0.4s infinite linear;
+        animation: spin 0.4s infinite linear;
+    }
+    .ui-load .ui-load-bg1,.ui-load .ui-load-bg2{position:absolute;left:-1em;top:-1em;}
+    .ui-load .ui-load-bg1{border:1em solid #333;}
+    .ui-load .ui-load-bg2{width:3em;overflow:hidden;border-radius:0em;}
+    .ui-load .ui-load-bg3{border:1em solid #fff;}
+    .clearx:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
+    .clearx {zoom:1;}
+    /* Loading Spinner */
+    @-moz-keyframes spin {0% {-moz-transform: rotate(0deg);}100% {-moz-transform: rotate(359deg);}}
+    @-webkit-keyframes spin {0% {-webkit-transform: rotate(0deg);}100% {-webkit-transform: rotate(359deg);}}
+    @-o-keyframes spin {0% {-o-transform: rotate(0deg);}100% {-o-transform: rotate(359deg);}}
+    @keyframes spin    {0% {transform: rotate(0deg);}100% {transform: rotate(359deg);}}
+    @-ms-keyframes spin{0%{-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-ms-transform:rotate(360deg);transform:rotate(360deg)}}
+
+
+@-webkit-keyframes pulse {
+    0% { -webkit-transform: scale(0); }
+    60% { -webkit-transform: scale(0.1); }
+    90% { -webkit-transform: scale(1.1); }
+    100% { -webkit-transform: scale(1); }
+}
+@-moz-keyframes pulse {
+    0% { -moz-transform: scale(0); }
+    60% { -moz-transform: scale(0.1); }
+    100% { -moz-transform: scale(1); }
+}
+@-o-keyframes pulse {
+    0% { -o-transform: scale(0); }
+    60% { -o-transform: scale(0.1); }
+    90% { -o-transform: scale(1.1); }
+    100% { -o-transform: scale(1); }
+}
+@keyframes pulse {
+    0% { transform: scale(0); }
+    70% { transform: scale(0); }
+    85% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@-webkit-keyframes pulse2 {
+    0% { -webkit-transform: scale(0); }
+    50% { -webkit-transform: scale(1.1); }
+    100% { -webkit-transform: scale(1); }
+}
+@-moz-keyframes pulse2 {
+    0% { -moz-transform: scale(0); }
+    50% { -moz-transform: scale(1.1); }
+    100% { -moz-transform: scale(1); }
+}
+@-o-keyframes pulse2 {
+    0% { -o-transform: scale(0); }
+    50% { -o-transform: scale(1.1); }
+    100% { -o-transform: scale(1); }
+}
+@keyframes pulse2 {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.animated {
+    -webkit-animation-duration: 4s;
+       -moz-animation-duration: 4s;
+         -o-animation-duration: 4s;
+            animation-duration: 4s;
+    -webkit-animation-fill-mode: both;
+       -moz-animation-fill-mode: both;
+         -o-animation-fill-mode: both;
+            animation-fill-mode: both;
+}
+.animated.pulse {
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    -o-animation-name: pulse;
+    animation-name: pulse;
+}
+
+.ui-dialog{
+    -webkit-animation-duration: 0.8s;
+       -moz-animation-duration: 0.8s;
+         -o-animation-duration: 0.8s;
+            animation-duration: 0.8s;
+    -webkit-animation-fill-mode: both;
+       -moz-animation-fill-mode: both;
+         -o-animation-fill-mode: both;
+            animation-fill-mode: both;
+    -webkit-animation-name: pulse2;
+    -moz-animation-name: pulse2;
+    -o-animation-name: pulse2;
+    animation-name: pulse2;
+    background-color: #fff;
+    border-radius: 8px;
+}
+.ui-dialog .ui-close {
+    background-position: 0 -96px;
+    height: 16px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 16px;
+    font-family: arial;
+    cursor: pointer;
+    color: #666;
+}
+.ui-dialog .ui-dialog-footer{
+    text-align: center;
+}
+.ui-dialog .ui-dialog-content{
+    padding: 30px 30px 0 30px;
+}
+.ui-dialog .ui-dialog-content .upload_tool{
+
+}
+.ui-dialog .ui-dialog-header{
+    height: 0px;
+}
+.ui-cut{
+    background: #fff;
+}
+
+    .ui-dialog .ui-box img{
+        cursor: move;
+    }
+
+
+    .ui-dialog  .animated {
+        -webkit-animation-duration: 1s;
+           -moz-animation-duration: 1s;
+             -o-animation-duration: 1s;
+                animation-duration: 1s;
+    }
+
+    .ro-upload-box{display: inline-block;}
+    .ui-button{
+        display:inline-block;
+        padding:0 18px;
+        word-spacing:8px;
+        letter-spacing: 1px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+        font-family:"微软雅黑";
+        background:#ccc;
+        border-radius:10px;
+        box-shadow:1px 1px 14px 12px #777 inset;
+        color:#fff;
+        text-shadow:1px 1px 1px #000;
+         -moz-user-select: none;
+         -webki-user-select: none;
+         -ms-user-select: none;
+         -o-user-select: none;
+         user-select: none;
+         cursor:pointer;
+    }
+    .ui-button:hover{
+        box-shadow:1px 1px 14px 12px #666 inset;
+    }
+    .ui-button:active{
+        box-shadow:1px 1px 14px 12px #555 inset;
+    }
+
+    
+    .toolBar{
+        height:30px;
+        line-height:30px;
+        font-size: 0px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .toolBar .ui-button{
+        font-size: 16px;
+        margin: 2px;
+        width:20px;
+        letter-spacing:0;
+    }
+
+    .pro{
+        width: 150px;
+        height:10px;
+        line-height:30px;
+        position: relative;
+        display: inline-block;
+        margin:0 10px;
+    }
+    .pro .h,.pro .l{
+        position: absolute;
+        width: 100%;
+        height: 10px;
+        background: #e0e0e0;
+        display: block;
+        border-radius:4px;
+    }
+    .pro .l{
+        background: #3d92ee;
+        width: 0%;
+    }
+    .pro .dot{
+        position: absolute;
+        background: #fff;
+        border-radius:14px;
+        border: 1px solid #ccc;
+        width: 14px;
+        height: 14px;
+        left: 0%;
+        top: -3px;
+        display: block;
+        cursor: col-resize;
+    }
+</style>
+</head>
+<body>
+	<h2>Cut弹框、上传、裁截图</h2>
+    <div class="ui-box">
+        <div style="font-size: 23px;" class="ui-load">
+            <div class="ui-load-bg1"></div>
+            <div class="ui-load-bg2">
+                <div class="ui-load-bg3"></div>
+            </div>
+        </div>
+        <!-- http://epaper.jzrb.com/jzwb/rmp/1/82/2011-11/21/F2/res03_attpic_brief.jpg -->
+        <img id="img" class="animated pulse" src="http://img1.imgtn.bdimg.com/it/u=1897355986,2914710187&fm=21&gp=0.jpg">
+    </div>
+    <div class="ui-button">点击</div>
+
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+
+	$(function(){
+
+		// 例1
+		seajs.use('cut', function(Cut){
+
+            new Cut({
+                "openBtn":".ui-button"
+                ,"imgElement":$("#img")
+                ,"token":"10298ccca5AzuHm1njfbJ2khoGMkFuh73Nkm1ypbLQxeupoWWgJzg0Qm3NwU3iQDiXz2zk7Yh"
+                // ,"success":function(data, imgURI){
+                //     log("success:",imgURI);
+                // }
+                ,"fail":function(data){
+                    log("fail:",data)
+                }
+                ,setToolDisabled:function(){
+                    //log("setToolDisabled:",arguments);
+                }
+                ,defaultImgSrc:"http://img1.imgtn.bdimg.com/it/u=1897355986,2914710187&fm=21&gp=0.jpg"
+                ,initImgSrc:"http://img1.imgtn.bdimg.com/it/u=1897355986,2914710187&fm=21&gp=0.jpg"
+                ,tipTimer:3000
+                // ,"dialogOpt":{
+                //     width:900
+                // }
+                // ,cutOpt:{
+                //     "headers":{
+                //        "token":123
+                //     }
+                // }
+            //,isShowMsg:false
+                ,uploaderOpt:{
+                    upOpt:{
+                        onSelectError:function(){
+                            log(111)
+                        }
+                    }
+                }
+            });
+            
+		});
+	});
+
+	</script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

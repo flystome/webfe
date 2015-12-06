@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+<style type="text/css">
+    a.ui-button{
+        width:auto;
+        letter-spacing: 1px;
+    }
+    .ui-button{
+        font-size: 14px;
+    }
+    .ui-button:hover
+    ,.cur{
+        background: #4593fb;
+        border: 1px solid #56a4fc;
+    }
+    .ui-button:active,.ui-button:focus{
+        background: #2371ea;
+        border: 1px solid #2371ea;
+    }
+    .ui-text{
+        width: 34px;
+        display: inline-block;
+        padding: 0 10px;
+        font-family: "微软雅黑";
+        background:#fff;
+        color:#666;
+        border-radius:10px;
+        height: 32px;
+        line-height: 30px;
+        text-align: center;
+        cursor: text;
+        font-weight: bold;
+        border: 1px solid #ccc;
+        margin:0 5px;
+        text-decoration: none;
+    }
+
+    .list{
+        border-top:1px solid #ccc;
+        border-left:1px solid #ccc;
+        line-height: 30px;
+        width: 100%;
+        margin-bottom: 20px;
+        color:#333;
+    }
+    .list .row{
+
+        border-right:1px solid #ccc;
+        border-bottom:1px solid #ccc;
+    }
+    .list .index{
+        display: block;
+        float: left;
+        width: 8%;
+        padding: 0 1%;
+        font-family: "宋体";
+    }
+    .list .content{
+        display: block;
+        margin-left: 10%;
+        width: calc(100% - 1px - 12%);
+        padding: 0 1%;
+        border-left:1px solid #ccc;
+        font-family: "宋体";
+    }
+
+    .pager{
+        text-align: right;
+    }
+    .pager *{
+        margin-bottom: 10px;
+    }
+
+    .pager .common{
+        background-color: #ddd;
+        border: 1px solid #ddd;
+        width: 60px;
+    }
+    .pager .pre{
+        background-color: red;
+    }
+    .pager .next{
+        background-color: blue;
+    }
+    .pager .first{
+        background-color: green;
+    }
+    .pager .end{
+        background-color: black;
+    }
+
+    .pager .cur,.pager .common:hover{
+        background: #4593fb;
+        border: 1px solid #56a4fc;
+    }
+
+    .pager .disable,.pager .disable:hover{
+        background: #eee;
+        border: 1px solid #eee;
+        cursor: default;
+    }
+
+    .line{
+        border-top:1px solid #ccc;
+        padding: 10px 0;
+    }
+</style>
+</head>
+<body>
+	<h2>Page分页组件</h2>
+
+    <div class="pager J_page1">
+    </div>
+
+    <div class="list">
+    </div>
+
+    <div class="pager J_page2">
+<!--
+        <a class="ui-button">首页</a>
+        <a class="ui-button">上一页</a>
+        <a class="ui-button">1</a>
+        <a class="ui-button cur">2</a>
+        <a class="ui-button">3</a>
+        <a class="ui-button">…</a>
+        <a class="ui-button">4</a>
+        <a class="ui-button">5</a>
+        <a class="ui-button">下一页</a>
+        <a class="ui-button">末页</a>
+        <input class="ui-text" type="text" placeholder="页码">
+        <span class="ui-button">跳转</span>
+-->
+    </div>
+    <div class="pager line J_page3">
+    </div>
+
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+
+    var data = [];
+    var size = 9 ;          // 每屏有多少页
+    var count = 10;         // 每页有多少条记录
+    var maxLength = 995;   // 最多生成多少条记录
+    var maxSize = 150;      // 每条记录最多有生成多少个字
+    var tpl = '<div class="row"><span class="index">{index}</span><span class="content">{content}</span></div>';
+
+    // 初始化数据
+    $(function(){
+
+        // 初始数据
+        var base = [];
+        var sizeSta = 19968;//78600;
+        var sizeEnd = 20700;//106445;
+        init();
+
+        for(var i = 0; i < maxLength; i++){
+            data.push({
+                index:i + 1
+                ,content:getContent()
+            });
+        }
+
+        //render(2);
+
+        function getContent(){
+
+            var length = parseInt(Math.random() * maxSize);
+            var content = [];
+            for(var i = 0; i < length; i++){
+                content.push(base[parseInt(Math.random() * (sizeEnd - sizeSta))]);
+            }
+            return content.join("");
+        }
+
+
+        function init(){
+            for (var i = sizeSta; i < sizeEnd; i++){
+                // "一".charCodeAt();
+                base.push(String.fromCharCode(i));
+            }
+        }
+    });
+
+    function renderList(curPage){
+        curPage = curPage < 1 ? 1: curPage;
+        var dt = null;
+        var html = [];
+        var st = (curPage - 1) * count;
+        for(var i = st; i < st + count; i++){
+            if(i >= data.length) continue;
+            dt = data[i] || {};
+            html.push(tpl.replace(/{(\w+)}/g, function(a, b){
+                return dt[b] || "";
+            }));
+        }
+        $(".list").html(html.join(""));
+    }
+
+	$(function(){
+		// 例1
+		seajs.use('page', function(Page){
+
+            var lastPage = null;
+
+            var page1 = new Page({
+                "container":".J_page1"
+                ,"curPage":3
+                ,"length":data.length
+                ,"count":count || 10
+                ,"size":size || 8
+                ,"commonClass":"common ui-button"
+                ,"firstClass":"first"
+                ,"preClass":"pre"
+                ,"nextClass":"next"
+                ,"endClass":"end"
+                ,"curClass":"cur"
+                ,midText:'{page}/{end}'
+                ,preText:"上"
+                ,nextText:"下"
+                ,firstText:"首"
+                ,endText:"末"
+                ,btnDisableClass:"disable"
+                // ,hasFirstAndEndTag:false    // 是否有首页和末页
+                // ,hasPreAndNextTag:false     // 是否有上一页和下一页
+                // ,hasJumpTag:false
+                ,beforeJump:function(curPage){
+                    if(lastPage != curPage){
+                        lastPage = curPage;
+                        page2 && page2.goToPage(curPage);
+                        renderList(curPage);
+                    }
+
+                }
+            });
+
+            var page2 = new Page({
+                "container":".J_page2"
+                ,"curPage":3
+                ,"commonClass":"ui-button"
+                ,"length":data.length
+                ,"count":count || 10
+                ,"size":size || 8
+                //,hasFirstAndEndTag:false    // 是否有首页和末页
+                //,hasPreAndNextTag:false     // 是否有上一页和下一页
+                //,hasJumpTag:false
+                ,beforeJump:function(curPage){
+                    if(lastPage != curPage){
+                        lastPage = curPage;
+                        page1 && page1.goToPage(curPage);
+                        renderList(curPage);
+                    }
+                }
+            });
+
+
+            var page3 = new Page({
+                "container":".J_page3"
+                ,"curPage":3
+                ,"commonClass":"ui-button"
+                ,"length":data.length || 41
+                ,"count":count || 10
+                ,"size":size || 8
+                ,hasFirstAndEndTag:false    // 是否有首页和末页
+                ,hasPreAndNextTag:false     // 是否有上一页和下一页
+                ,hasJumpTag:false
+            });
+
+		});
+	});
+	</script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

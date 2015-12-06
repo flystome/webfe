@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Validation</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+<style type="text/css">
+	input{margin:10px 5px;padding:8px;}
+</style>
+
+</head>
+<body>
+	<h2>validation</h2>
+	<p>这里演示一下 poptip 下的模块的使用。</p>
+	<form id="frmInfo">
+		<input type="text" name="name1" ro-validata="number require" ro-number="1234" ro-require="> 0 error">
+		<input type="text" name="name2" ro-custom="ccc">
+		<input type="text" name="name3" ro-validata1="require" ro-require="1234">
+		<input type="text" name="name4" ro-validata="lleng[1,2]" ro-lleng="lleng1,2" ro-number="1234">
+		<br>
+		<input type="submit" value="test">
+	</form>
+
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+	$(function(){
+		// 例1
+		seajs.use('validation', function(Validation){
+
+			var validate = new Validation({
+				form:"#frmInfo"
+				,"defaultMsg":"出错了"
+				,rule:{
+					number:"\/^[0-9]+$\/"
+					,require1:function(){
+						var value = $(this).val();
+						// --- debug --- 未考虑有提示的情况
+						if($.trim(value) == ""){
+							return false;
+						}else{
+							return true;
+						}
+					}
+					,lleng:function(){
+
+						//log(this,arguments)
+						return true
+					}
+				}
+				,events:"focus blur change"
+				,success:function(type){
+					//log("Global success",type,this)
+				}
+				,fail:function(type, errData){
+					log("Global ------",type,errData,this.value)
+				}
+				,messages:{
+					"AtoB":"输入字的范围是最小{A}最大{B}"
+					,"number":"仅能输入数字require"
+					,"require":"不能为空"
+				}
+				,userCustomData:{
+					"ccc":{
+						"validata":"number  require"
+						,"number":"仅能输入数字"
+						,"require":"不能为空"
+
+						//type:blur,focus,submit哪种事件引发的成功
+						,"success":function(type){
+							//log("Single success",type,this)
+						}
+						,"fail":function(type, errData){
+							log("Single ======",type,errData,this.value)
+						}
+					}
+
+				}
+				,beforeValidata:function(){
+					//console.log("beforeValidata", this);
+				}
+				,submit:function(){
+					log(this._form.serialize())
+					log("submit",this);
+				}
+			});
+			//tip.setContent(12399);
+		});
+	});
+
+
+	</script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

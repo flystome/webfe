@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+<style type="text/css">
+    body{padding:10px;font-size: 16px}
+    
+    h2{
+        text-shadow:1px 1px 2px #333;
+        color:#000;
+        font-family:"微软雅黑";
+        margin: 20px 0;
+    }
+    .ro-upload-box{
+        display:inline;
+    }
+    .ro-upload-btn{
+        display:inline-block;
+        padding:0 10px;
+        word-spacing:8px;
+        letter-spacing: 1px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+        font-family:"微软雅黑";
+        background:#ccc;
+        border-radius:10px;
+        box-shadow:1px 1px 14px 12px #666 inset;
+        color:#fff;
+        text-shadow:1px 1px 1px #000;
+         -moz-user-select: none;
+         -webki-user-select: none;
+         -ms-user-select: none;
+         -o-user-select: none;
+         user-select: none;
+         cursor:pointer;
+    }
+
+    #uploadbar{
+        display: inline-block;
+        width: 80px;
+    }
+
+    .btn{
+        display:inline-block;
+        padding:0 20px;
+        word-spacing:8px;
+        letter-spacing: 1px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+        font-family:"微软雅黑";
+        background:#ccc;
+        border-radius:10px;
+        box-shadow:1px 1px 14px 12px #666 inset;
+        color:#fff;
+        text-shadow:1px 1px 1px #000;
+         -moz-user-select: none;
+         -webki-user-select: none;
+         -ms-user-select: none;
+         -o-user-select: none;
+         user-select: none;
+         cursor:pointer;
+         margin-left: 20px;
+    }
+</style>
+</head>
+<body>
+	<h2>Upload上传组件</h2>
+
+    <div id="uploadbar">
+        <!--
+        <div class="ro-upload-box">
+            <input type="file" style="display:none">
+            <span class="ro-upload-btn">上 传</span>
+        </div>
+        -->
+    </div>
+    <div class="btn">提 交</div>
+
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+
+	$(function(){
+
+        // {
+        //         height          : 25,
+        //         swf             : '../js/uploadify/uploadify.swf',
+        //        //后端处理action
+        //         uploader        : '../doct/uploadify',
+        //         width           : 120,
+        //         //fileTypeExts  : '*.doc; *.ppt;*.xls;',
+        //         fileObjName     : 'fileAttach', //文件上传name
+        //         auto            : false, //文件选中后是否自动提交
+        //           multi    : false, //是否多选
+        //        //文件上传完毕后消息框是否自动消失，默认true
+        //         removeCompleted : false,  
+        //         //文件上传完毕后消息框消失延迟时间,默认3 仅removeCompleted=true生效
+        //         //removeTimeout   : 3,
+        //         //文件上传大小限制           
+        //         //fileSizeLimit : 999, 
+        //         //文件队列传输完毕 queueDate [uploadsSuccessful,uploadsErrored]
+        //         onQueueComplete : function(queueData){
+        //                         alert('success:'+queueData.uploadsSuccessful+'fail:'+queueData.uploadsErrored)
+        //         },
+        //          //单文件传输成功           
+        //         onUploadSuccess:function(file, data, response){                                         
+        //             //alert('singleSuccess,fileName:'+file.name);
+        //         },
+        //        //单文件传输失败
+        //         onUploadError : function(file, errorCode, errorMsg, errorString) {                      
+        //             //eg:The file mozjs.dll errorCode -200 errorCode -200 errorMsg 302 errorString HTTP Error (302)
+        //             alert('The file ' + file.name + ' errorCode ' + errorCode+ ' errorCode ' + errorCode+ ' errorMsg ' + errorMsg+ ' errorString ' + errorString);
+        //         },
+        //         //按钮显示名称
+        //         buttonText    : "chose files..."                                                         
+        //     }
+
+		// 例1
+		seajs.use('upload', function(Upload){
+            var upload = new Upload({
+                "container":"#uploadbar"
+                ,"uploader":"/upload"
+                ,"formData":{
+                    "data":123
+                }
+                ,"swf":"http://localhost:9000/ro/m/upload/js/1.0.1/uploadify.swf"
+                ,"height":"30px"
+                ,"width":"60px"
+                ,"fileSizeLimit":0   // 0为不限制
+                ,"uploadLimit":10    // 最大可上传文件数
+                ,"auto":false
+                ,"fileTypeDesc": "image/jpeg,image/jpg,image/png,image/bmp"
+                //,"buttonText":"upload"
+                ,"onUploadStart":function(file){
+                    log("onUploadStart:",arguments)
+                }
+                ,"onUploadProgress":function(file, fileBytesLoaded, fileTotalBytes){
+                    log("onUploadProgress:",arguments)
+                }
+                ,"onUploadSuccess":function(file, data, response){
+                    log("onUploadSuccess:",arguments)
+                }
+                ,"onUploadComplete":function(file){
+                    log("onUploadComplete:",arguments)
+                }
+                ,"onSelect":function(file){
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload=function(e){  
+                        log(this.result);  
+                    }  
+                    log("onSelect:",arguments,file.index,file)
+                }
+                ,"onSelectError":function(file, errorCode, errorMsg){
+                    log("onSelectError:",arguments)
+                }
+                ,"onUploadError":function(file, errorCode, errorMsg){
+                    log("onUploadError:",arguments)
+                }
+            });
+
+            $(".btn").click(function(){
+                upload.send();
+            });
+
+            window.upload = upload;
+		});
+	});
+	</script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

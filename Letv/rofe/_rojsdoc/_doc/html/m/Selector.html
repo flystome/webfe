@@ -1,0 +1,967 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Selector</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Selector</h1>
+		<p>描述 : 模拟Select下拉框,注意，此组件依赖input的contentChange自定义事件</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://localhost:9000/_demo/m/selector/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>ops</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>ops.container</td>
+					<td>HTMLElement</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						Dom
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.getParam</td>
+					<td>Function</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						取接口必须参数的回调（参数为上级被选中的value值）；当ops.getData有值时，此设置可以为空     *                                                  返回值要求必须是JSON格式，key按接口需要来     *                                                  在ops.getData无配置值时此函数返回的是直接可用数据
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.getData</td>
+					<td>Function</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						ajax获取数据；当ops.getParam有值时，此设置可以为空
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.child</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						子Dom
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.isFirstLoad</td>
+					<td>Boolean</td>
+					<td>
+						
+						是否第一次要加载
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.changeCallback</td>
+					<td>Function</td>
+					<td>
+						
+						下拉选项选中值被改变时回调，参数：第一个参数是选中的选项Dom对象，第二个参数是选中的值，this操作句柄是本Selector实例
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.selCallback</td>
+					<td>Function</td>
+					<td>
+						
+						下拉选项被选中后回调，参数：第一个参数是选中的选项Dom对象，第二个参数是选中的值，this操作句柄是本Selector实例
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.callback</td>
+					<td>Function</td>
+					<td>
+						
+						选项初始化后的回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.inited</td>
+					<td>Function</td>
+					<td>
+						
+						下拉控件初始化后的回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.defText</td>
+					<td>String</td>
+					<td>
+						
+						默认显示值
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.canNotDownList</td>
+					<td>Boolean</td>
+					<td>
+						
+						是否不启用下拉事件,一般使用不上
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.getContent</td>
+					<td>Function</td>
+					<td>
+						
+						生成每个option时前的回调（参数是接口返回数据单对象和对象的索引名）     *                                                  返回值要求必须是这种格式return {&#34;value&#34;:&#34;&#34;,&#34;text&#34;:&#34;&#34;}
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.widgetCssName</td>
+					<td>String</td>
+					<td>
+						
+						select模拟框最外层容器样式,默认值ro-selector-selector
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.listCssName</td>
+					<td>String</td>
+					<td>
+						
+						下框列表的旬层容器样式,默认值ro-selector-list
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.contentCssName</td>
+					<td>String</td>
+					<td>
+						
+						select的text值容器样式,默认值ro-selector-content
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.iconCssName</td>
+					<td>String</td>
+					<td>
+						
+						小三角容器样式,默认值ro-selector-icon
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.iconDownCssName</td>
+					<td>String</td>
+					<td>
+						
+						倒三角(即下拉框显示时)的样式。(此时小三角容器样式仍存在),默认值ro-selector-down
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.itemCssName</td>
+					<td>String</td>
+					<td>
+						
+						下拉框选项的样式,默认值ro-selector-item
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.hoverCssName</td>
+					<td>String</td>
+					<td>
+						
+						下拉框选项被光标放在上面时的样式,默认值ro-selector-hover
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.onCssName</td>
+					<td>String</td>
+					<td>
+						
+						下拉框选项被选中时的样式,默认值ro-selector-on
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.itemTpl</td>
+					<td>String</td>
+					<td>
+						
+						下拉框选项的模板,默认值&#39;&lt;span class=&#34;{itemCssName}&#34; data-value=&#34;{value}&#34;&gt;{text}&lt;/span&gt;&#39;
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.zIndex</td>
+					<td>String</td>
+					<td>
+						
+						select框的z-index的值,默认值1
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.maxHeight</td>
+					<td>String</td>
+					<td>
+						
+						下拉框容器的最大高度,默认值300
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.propertys</td>
+					<td>Object</td>
+					<td>
+						
+						下拉框的内属性，比如用户配合Send组件的Validation验证属性等
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>setNotDownList</td>
+						
+						<td>
+							
+							下拉事件是否不开启
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>canNotDownList</td>
+												<td>Boolean</td>
+												<td>
+													
+													是否不启用下拉；默认启用
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>autoSelect</td>
+						
+						<td>
+							
+							自动设置选中
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>selectorElement</td>
+												<td>HTMLElement</td>
+												<td>
+													
+													select的Dom元素,可选
+												</td>
+											</tr>
+										
+									
+											
+											<tr>
+												<td>arg_value</td>
+												<td>String</td>
+												<td>
+													
+													要被选中的值，和下拉框选项的某一value值一致的
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getValue</td>
+						
+						<td>
+							
+							获取下拉框选中的值
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>selectorElement</td>
+												<td>HTMLElement</td>
+												<td>
+													
+													select的Dom元素,可选
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>remove</td>
+						
+						<td>
+							
+							移除下拉Select组件
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>selectorElement</td>
+												<td>HTMLElement</td>
+												<td>
+													
+													select的Dom元素,可选
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>hide</td>
+						
+						<td>
+							
+							隐藏下拉Select组件
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>selectorElement</td>
+												<td>HTMLElement</td>
+												<td>
+													
+													select的Dom元素,可选
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>show</td>
+						
+						<td>
+							
+							显示下拉Select组件
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>selectorElement</td>
+												<td>HTMLElement</td>
+												<td>
+													
+													select的Dom元素,可选
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>hiddenList</td>
+						
+						<td>
+							
+							隐藏下拉框
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>selectorElement</td>
+												<td>HTMLElement</td>
+												<td>
+													
+													select的Dom元素,可选
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>showList</td>
+						
+						<td>
+							
+							显示下拉框
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>selectorElement</td>
+												<td>HTMLElement</td>
+												<td>
+													
+													select的Dom元素,可选
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Selector</td>
+				<td>Selector的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+
+     
+
+            &lt;div id=&#34;sltYear&#34; class=&#34;initSelect&#34;&gt;&lt;/div&gt;
+
+            &lt;div id=&#34;sltMonth&#34; class=&#34;initSelect&#34;&gt;&lt;/div&gt;
+
+            &lt;div id=&#34;sltDate&#34; class=&#34;initSelect&#34;&gt;
+
+                &lt;div class=&#34;ro-selector-selector&#34; tabindex=&#34;-1&#34;&gt;
+
+                    &lt;span class=&#34;ro-selector-content&#34;&gt;请选择日&lt;/span&gt;
+
+                    &lt;input type=&#34;hidden&#34; name=&#34;year&#34; data-value=&#34;&#34;&gt;
+
+                    &lt;span class=&#34;ro-selector-icon&#34;&gt;▾&lt;/span&gt;
+
+                    &lt;div class=&#34;ro-selector-list&#34;&gt;
+
+                        &lt;span class=&#34;ro-selector-item&#34; data-value=&#34;&#34;&gt;请选择日&lt;/span&gt;
+
+                    &lt;/div&gt;
+
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+
+            
+
+            
+
+            // 例1
+
+            seajs.use(&#39;selector&#39;, function(Selector){
+
+                var yearObj = new Selector({
+
+                    &#34;container&#34;:&#34;#sltYear&#34;
+
+                    ,&#34;child&#34;:&#34;#sltDate&#34;
+
+                    ,isFirstLoad:true
+
+                    ,&#34;defText&#34;:&#34;请选择年&#34;
+
+                    ,&#34;getParam&#34;:function(cid){
+
+                        return [2000, 2001, 2002, 2003, 2004];
+
+                    }
+
+                    ,&#34;getContent&#34;:function(item,index){
+
+                        return {
+
+                            &#34;value&#34;:item
+
+                            ,&#34;text&#34;:item + &#34;年&#34;
+
+                        }
+
+                    }
+
+                    ,&#34;callback&#34;:function(element){
+
+                        log(&#34;#sltYear：&#34;,this.getValue(&#34;#sltYear&#34;))
+
+                    }
+
+                    ,propertys:{
+
+                        &#34;ro-validate&#34;:&#34;require&#34;
+
+                        ,&#34;ro-require&#34;:&#34;年不能为空！&#34;
+
+                    }
+
+                });
+
+                var monthObj = new Selector({
+
+                    &#34;container&#34;:&#34;#sltMonth&#34;
+
+                    ,&#34;child&#34;:&#34;#sltDate&#34;
+
+                    ,isFirstLoad:true
+
+                    ,&#34;defText&#34;:&#34;请选择月&#34;
+
+                    ,&#34;getParam&#34;:function(cid){
+
+                        return [1,2,3,4,5,6,7,8,9,10,11,12];
+
+                    }
+
+                    ,&#34;getContent&#34;:function(item,index){
+
+                        return {
+
+                            &#34;value&#34;:item
+
+                            ,&#34;text&#34;:item + &#34;月&#34;
+
+                        }
+
+                    }
+
+                    ,&#34;callback&#34;:function(element){
+
+                        log(&#34;#sltMonth&#34;)
+
+                    }
+
+                });
+
+
+
+                new Selector({
+
+                    &#34;container&#34;:&#34;#sltDate&#34;
+
+                    ,&#34;defText&#34;:&#34;请选择日&#34;
+
+                    ,isFirstLoad:true
+
+                    ,&#34;getParam&#34;:function(cid){
+
+                        //return [1,2,3,4,5,6,7,8,9,10];
+
+                    }
+
+                    ,&#34;getContent&#34;:function(item,index){
+
+                        return {
+
+                            &#34;value&#34;:item.id
+
+                            ,&#34;text&#34;:item.name + &#34;日&#34;
+
+                        }
+
+                    }
+
+                    ,getData:function(){
+
+                        var selection = this;
+
+
+
+                        if(yearObj.getValue(&#34;#sltYear&#34;) == &#34;&#34; || monthObj.getValue(&#34;#sltMonth&#34;)  == &#34;&#34;){
+
+                            selection.setData([]);
+
+                            return ;
+
+                        }
+
+                        // AJAX请求加回调
+
+                        search(function(data){
+
+                            selection.setData(data);
+
+                        }, yearObj.getValue(&#34;#sltYear&#34;), monthObj.getValue(&#34;#sltMonth&#34;));
+
+                    }
+
+                    ,&#34;callback&#34;:function(element){
+
+                        log(&#34;#sltDate&#34;)
+
+                        //if($(this).get(0).options.length &gt; 1)
+
+                        this.autoSelect(element,2);
+
+                    }
+
+                });
+
+            });
+
+
+
+            function search(cb,year,month){
+
+                setTimeout(function(){
+
+                    function isLeapYear(year){
+
+                        if((year % 4 == 0 &amp;&amp; year % 100 != 0) || year%400==0)
+
+                        //if((year % 4 == 0 &amp;&amp; year % 100 != 0) || (year%100==0 &amp;&amp; year%400==0))
+
+                            return true;
+
+                        else
+
+                            return false;
+
+                    }
+
+                    month = parseInt(month);
+
+                    var leap = [31,29,31,30,31,30,31,31,30,31,30,31];
+
+                    var nonleap = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+                    var months = isLeapYear(year) ? leap : nonleap;
+
+                    var days = [];
+
+                    for(var i = 1; i &lt;= months[month - 1]; i++){
+
+                        days.push({
+
+                            id:i
+
+                            ,name:i
+
+                        });
+
+                    }
+
+                    cb(days);
+
+                },3000);
+
+            }
+
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>dialog</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+<style type="text/css">
+	.module-demo {
+		width: 800px;
+		height: 60px;
+		margin:30px;
+		position: relative;
+	}
+	.module-demo h3 {
+		position: absolute;
+		right: 0;
+		top: 0;
+		background-color: #f8f8f8;
+		padding:0 10px;
+		height: 30px;
+		line-height: 30px;
+		color: #777;
+		margin: 0;
+	}
+	h3 {
+		height: 30px;
+		line-height: 30px;
+		padding:0 30px;
+		margin: 20px 0;
+		background-color: #69c;
+		color: #fff;
+	}
+	.demo-tipbox {
+		margin: 30px;
+		width: 800px;
+	}
+</style>
+
+</head>
+<body style="padding-bottom:300px;">
+	<!-- button按钮 demo -->
+	<h3>button按钮</h3>
+	<div class="module-demo">
+		<h3>按钮 a</h3>
+		<div>
+			<a class="ui-button ui-button-default" href="javascript:void(0)">按钮</a>
+			<a class="ui-button ui-button-highlight" href="javascript:void(0)">按钮</a>
+			<a class="ui-button ui-button-disabled" href="javascript:void(0)">按钮</a>
+		</div>
+	</div>
+	<div class="module-demo">
+		<input class="ui-button ui-button-default" type="button" value="确定">
+		<input class="ui-button ui-button-highlight" type="button" value="确定">
+		<input class="ui-button ui-button-disabled" type="button" value="确定">
+	</div>
+	<div class="module-demo">
+		<button class="ui-button ui-button-default">按钮</button>
+		<button class="ui-button ui-button-highlight">按钮</button>
+		<button class="ui-button ui-button-disabled">按钮</button>
+	</div>
+
+	<!-- tip提示框 demo -->
+	<h3>poptip气泡提示框</h3>
+	<div class="module-demo">
+		<div class="ui-poptip">
+			<div class="ui-poptip-container">
+				<div class="ui-poptip-arrow ui-poptip-arrow-left">
+					<em></em>
+					<span></span>
+				</div>
+				<div class="ui-poptip-content">
+					<p>提示提示提示提示提示提示</p>
+					<p>提示提示提示提示提示提示</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="module-demo">
+		<div class="ui-poptip">
+			<div class="ui-poptip-container">
+				<div class="ui-poptip-arrow ui-poptip-arrow-left">
+					<em></em>
+					<span></span>
+				</div>
+				<a href="javascript:void(0);" class="ui-poptip-close">x</a>
+				<div class="ui-poptip-content">
+					<p>提示提示提示提示提示提示</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="module-demo">
+		<div class="ui-poptip">
+			<div class="ui-poptip-container">
+				<div class="ui-poptip-arrow ui-poptip-arrow-up">
+					<em></em>
+					<span></span>
+				</div>
+				<a href="javascript:void(0);" class="ui-poptip-close">x</a>
+				<div class="ui-poptip-content">
+					<p>提示提示提示提示提示提示</p>
+					<p>提示提示提示提示提示提示</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="module-demo">
+		<div class="ui-poptip">
+			<div class="ui-poptip-container">
+				<div class="ui-poptip-arrow ui-poptip-arrow-down">
+					<em></em>
+					<span></span>
+				</div>
+				<div class="ui-poptip-content">
+					<p>提示提示提示提示提示提示</p>
+					<p>提示提示提示提示提示提示</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="module-demo">
+		<div class="ui-poptip">
+			<div class="ui-poptip-container">
+				<div class="ui-poptip-arrow ui-poptip-arrow-right">
+					<em></em>
+					<span></span>
+				</div>
+				<div class="ui-poptip-content">
+					<p>提示提示提示提示提示提示</p>
+					<p>提示提示提示提示提示提示</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h3>tiptext文本提示</h3>
+	<div style="margin:30px;">
+		<p class="ui-tiptext ui-tiptext-message">提示  ui-tiptext-message</p>
+		<p class="ui-tiptext ui-tiptext-error">错误  ui-tiptext-error</p>
+		<p class="ui-tiptext ui-tiptext-warn">警告  ui-tiptext-warn</p>
+		<p class="ui-tiptext ui-tiptext-success">成功  ui-tiptext-success</p>
+		<p class="ui-tiptext ui-tiptext-question">疑问  ui-tiptext-question</p>
+		<p class="ui-tiptext ui-tiptext-stop">阻止  ui-tiptext-stop</p>
+		<p class="ui-tiptext ui-tiptext-wait">等待  ui-tiptext-wait</p>
+	</div>
+	<h3>tipbox</h3>
+	<div class="demo-tipbox">
+		<div class="ui-tiptext-container ui-tiptext-container-message">
+			<p class="ui-tiptext ui-tiptext-message">提示  ui-tiptext-message</p>
+			<p class="ui-tiptext ui-tiptext-follow">提示  ui-tiptext-message</p>
+			<p class="ui-tiptext ui-tiptext-follow">提示  ui-tiptext-message</p>
+		</div><br/>
+		<div class="ui-tiptext-container ui-tiptext-container-message">
+			<p class="ui-tiptext ui-tiptext-message">提示  ui-tiptext-message</p>
+		</div><br/>
+		<div class="ui-tiptext-container ui-tiptext-container-error">
+			<p class="ui-tiptext ui-tiptext-error">错误  ui-tiptext-error</p>
+		</div><br/>
+		<div class="ui-tiptext-container ui-tiptext-container-warn">
+			<p class="ui-tiptext ui-tiptext-warn">警告  ui-tiptext-warn</p>
+		</div><br/>
+		<div class="ui-tiptext-container ui-tiptext-container-success">
+			<p class="ui-tiptext ui-tiptext-success">成功  ui-tiptext-success</p>
+		</div><br/>
+		<div class="ui-tiptext-container ui-tiptext-container-question">
+			<p class="ui-tiptext ui-tiptext-question">疑问  ui-tiptext-question</p>
+		</div><br/>
+		<div class="ui-tiptext-container ui-tiptext-container-stop">
+			<p class="ui-tiptext ui-tiptext-stop">阻止  ui-tiptext-stop</p>
+		</div><br/>
+		<div class="ui-tiptext-container ui-tiptext-container-wait">
+			<p class="ui-tiptext ui-tiptext-wait">等待  ui-tiptext-wait</p>
+		</div><br/>
+	</div>
+	
+	<!-- 表单demo -->
+	<h3>form表单</h3>
+	<form class="ui-form">
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">表单项文本</label>
+			<div class="ui-form-box">
+				<p class="ui-form-text">文本内容</p>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">
+				<span class="ui-form-required">*</span>表单项文本
+			</label>
+			<div class="ui-form-box">
+				<input class="ui-form-input" type="text">
+				<span class="ui-tiptext ui-tiptext-error">此处为必填</span>
+				<p class="ui-tiptext ui-tiptext-message">提示：填写网站名称，如：乐视网</p>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">
+				<span class="ui-form-required">*</span>表单项文本
+			</label>
+			<div class="ui-form-box">
+				<input class="ui-form-input" type="text">
+				<span class="ui-tiptext ui-tiptext-error">此处为必填</span>
+				<p class="ui-tiptext ui-tiptext-message">提示：填写网站名称，如：乐视网</p>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">
+				<span class="ui-form-required">*</span>表单项文本
+			</label>
+			<div class="ui-form-box">
+				<input class="ui-form-input" type="text">
+				<span class="ui-tiptext ui-tiptext-success">验证成功</span>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">
+				<span class="ui-form-required">*</span>表单项文本
+			</label>
+			<div class="ui-form-box">
+				<textarea class="ui-form-textarea"></textarea>
+				<span class="ui-tiptext ui-tiptext-error">此处为必填</span>
+				<p class="ui-tiptext ui-tiptext-message">提示：填写网站名称，如：乐视网</p>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">下拉选择</label>
+			<div class="ui-form-box">
+				<select class="ui-form-select">
+					<option>请选择</option>
+					<option>选项一</option>
+					<option>选项二</option>
+				</select>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label">
+				<span class="ui-form-required">*</span>验证码
+			</label>
+			<div class="ui-form-box">
+				<input class="ui-form-input ui-form-checkcode" type="text">
+				<img class="ui-checkcode-img" src="https://omeo.alipay.com/service/checkcode?sessionID=82012ab6b1f4ed9e675fb9092a25cb3b&r=0.9321065918075809">
+				<a href="javascript:void(0)">看不清，换一张</a>
+				<p class="ui-form-text ui-form-explain">请输入右图中字符，不区分大小写。</p>
+			</div>
+		</div>
+		<div class="ui-form-item clearfix">
+			<label class="ui-form-label"></label>
+			<div class="ui-form-box">
+				<input class="ui-button ui-button-default" type="button" value="确定">
+				<input class="ui-button ui-button-disabled" type="button" value="取消">
+			</div>
+		</div>
+	</form>
+
+	<!-- 表格demo -->
+	<h3>table表格</h3>
+	<div class="ui-table-container">
+		<table class="ui-table">
+			<thead>
+				<tr>
+					<th>创建时间</th>
+					<th>交易号</th>
+					<th>姓名</th>
+					<th>金额</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>2015-04-27</td>
+					<td>2393338</td>
+					<td>张三</td>
+					<td>58</td>
+					<td><a href="javascript:void(0)">删除</a></td>
+				</tr>
+				<tr class="ui-table-split">
+					<td>2015-04-27</td>
+					<td>2393338</td>
+					<td>张三</td>
+					<td>58</td>
+					<td><a href="javascript:void(0)">删除</a></td>
+				</tr>
+				<tr>
+					<td>2015-04-27</td>
+					<td>2393338</td>
+					<td>张三</td>
+					<td>58</td>
+					<td><a href="javascript:void(0)">删除</a></td>
+				</tr>
+				<tr class="ui-table-split">
+					<td>2015-04-27</td>
+					<td>2393338</td>
+					<td>张三</td>
+					<td>58</td>
+					<td><a href="javascript:void(0)">删除</a></td>
+				</tr>
+				<tr>
+					<td>2015-04-27</td>
+					<td>2393338</td>
+					<td>张三</td>
+					<td>58</td>
+					<td><a href="javascript:void(0)">删除</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>   
+	
+	<!-- 私有js -->
+	<script type="text/javascript"></script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

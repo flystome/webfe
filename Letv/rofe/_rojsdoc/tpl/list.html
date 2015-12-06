@@ -1,0 +1,129 @@
+
+<body>
+
+	<div class="ro_doc">
+		<h1><%= data.title %></h1>
+		<p>描述 : <%= data.desc %></p>
+		<p>作者 : <%= data.author %></p>
+		<% if(data.demo ) {%>
+		<p><a href="<%= data.demo %>" target="_blank">demo</a></p>
+		<% } %>
+		<h2><%= data.type %>说明</h2>
+		<h3><%= data.type %>参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		<% for(var i in data.param) {%>
+			<tr class="trparent">
+				<td><%= data.param[i].key %></td>
+				<td><%= data.param[i].type %></td>
+				<td><%= data.param[i].value %></td>
+			</tr>
+			<% for(var j in data.param[i].childs) {%>
+				<tr>
+					<td><%= data.param[i].childs[j].key %></td>
+					<td><%= data.param[i].childs[j].type %></td>
+					<td>
+						<% if(data.param[i].childs[j].isRequire) {%> <b style="color:red">[必填]</b><% } %>
+						<%= data.param[i].childs[j].value %>
+
+						<% if(data.param[i].childs[j].childs) {%>
+							<table class="ui-table">
+								<tr>
+									<th>参数名称</th>
+									<th>参数类型</th>
+									<th>说明</th>
+								</tr>
+								<% for(var k in data.param[i].childs[j].childs) {%>
+										
+										<tr>
+											<td><%= data.param[i].childs[j].childs[k].key %></td>
+											<td><%= data.param[i].childs[j].childs[k].type %></td>
+											<td>
+												<% if(data.param[i].childs[j].childs[k].isRequire) {%> <b style="color:red">[必填]</b><% } %>
+												<%= data.param[i].childs[j].childs[k].value %>
+											</td>
+										</tr>
+									
+								<% } %>
+							</table>
+						<% } %>
+
+					</td>
+				</tr>
+			<% } %>
+		<% } %>
+		</table>
+		<% if(data.prototypes) {%>
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				<% for(var i in data.prototypes) {%>
+					<tr>
+						<td><%= data.prototypes[i].roname %></td>
+						
+						<td>
+							<% if(data.prototypes[i].isRequire) {%> <b style="color:red">[必填]</b><% } %>
+							<%= data.prototypes[i].desc %>
+						</td>
+						<td>
+
+							<% if(data.prototypes[i].param) {%>
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									<% for(var j in data.prototypes[i].param) {%>
+											
+											<tr>
+												<td><%= data.prototypes[i].param[j].key %></td>
+												<td><%= data.prototypes[i].param[j].type %></td>
+												<td>
+													<% if(data.prototypes[i].param[j].isRequire) {%> <b style="color:red">[必填]</b><% } %>
+													<%= data.prototypes[i].param[j].value %>
+												</td>
+											</tr>
+										
+									<% } %>
+								</table>
+							<% } %>
+							<% if(!data.prototypes[i].param) {%> 无<% } %>
+						</td>
+					</tr>
+					
+				<% } %>
+			</table>
+		<% } %>
+		<% if(data.type == '类') {%>
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td><%= data.returns.type %></td>
+				<td><%= data.returns.value %></td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		<% } %>
+		<pre>
+			<code class="js">
+<%= data.example %>
+			</code>
+		</pre>
+	</div>
+
+

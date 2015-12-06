@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dropdown</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+<style type="text/css">
+	input{margin:10px 5px;padding:8px;}
+	.btn {
+		background:#ccc;
+		cursor:pointer;
+	}
+	.list{
+		width:100px;
+		height:100px;
+		display:none;
+	}
+	.group{
+		height:200px;
+	}
+	.list1{background:#f00}
+	.list2{background:#0f0;margin-left:110px;}
+	.list3{background:#00f;margin-left:200px;}
+
+	.bgRed{background:red;}
+</style>
+
+</head>
+<body>
+	<h2>Dropdown</h2>
+
+<div class="group"> 第一组
+	<input class="btn J_btn" type="button" value="test1">
+	<input class="btn J_btn" type="button" value="test2">
+	<input class="btn J_btn" type="button" value="test3">
+
+	<div class="list1 list J_list">1
+	</div>
+
+	<div class="list2 list J_list">2
+	</div>
+
+	<div class="list3 list J_list">3
+	</div>
+</div>
+<div class="group"> 第二组
+	<input class="btn J__btn2" type="button" value="test1">
+	<input class="btn J__btn2" type="button" value="test2">
+	<input class="btn J__btn2" type="button" value="test3">
+
+	<div class="list1 list J__list2">
+	</div>
+</div>
+<div class="group"> 第三组
+	<input class="btn J__btn3" type="button" value="test1">
+	<input class="btn J__btn3" type="button" value="test2">
+	<input class="btn J__btn3" type="button" value="test3">
+
+	<div class="list1 list J__list3">
+	</div>
+</div>
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+	$(function(){
+		// 例1
+		seajs.use('dropdown', function(Dropdown){
+
+			var dropdown1 = new Dropdown({
+				btn:".J_btn"
+				,list:".J_list"
+				,btnOpenEvent:"mouseenter"
+				,btnCancelEvent:"mouseleave"
+				,listOpenEvent:"mouseenter"
+				,listCancelEvent:"mouseleave"
+				,time:200
+				,open:function(){
+					var currBtnElement = this.getCurrBtnElement();
+					$(currBtnElement).addClass("bgRed");
+				}
+				,cancel:function(){
+					var currBtnElement = this.getCurrBtnElement();
+					$(currBtnElement).removeClass("bgRed");
+				}
+			});
+
+			var dropdown2 = new Dropdown({
+				btn:".J__btn2"
+				,list:".J__list2"
+				,open:function(){
+					var currBtnElement = this.getCurrBtnElement();
+					$(currBtnElement).addClass("bgRed");
+				}
+				,cancel:function(){
+					var currBtnElement = this.getCurrBtnElement();
+					$(currBtnElement).removeClass("bgRed");
+				}
+			});
+
+			var dropdown3 = new Dropdown({
+				btn:".J__btn3"
+				,list:".J__list3"
+				,btnOpenEvent:"click"
+				,btnCancelEvent:"click"
+				,listOpenEvent:""
+				,listCancelEvent:""
+				,open:function(){
+					var currBtnElement = this.getCurrBtnElement();
+					$(currBtnElement).addClass("bgRed");
+				}
+				,cancel:function(){
+					var currBtnElement = this.getCurrBtnElement();
+					$(currBtnElement).removeClass("bgRed");
+				}
+			});
+		});
+	});
+
+
+	</script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

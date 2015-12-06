@@ -1,0 +1,416 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Send</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Send</h1>
+		<p>描述 : 表单验证</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opts</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>opts.container</td>
+					<td>String</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						要验证提交的Form；opts.valiOpts.form和opts.form必须有一个存在值；当两者都存在值，但不一致时，以opts.valiOpts.form为准；
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.url</td>
+					<td>String</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						表单提交AJAX的URL；和opts.goOpts.url是一样的；
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.query</td>
+					<td>String</td>
+					<td>
+						
+						opts.container容器中哪些可以做用提交数据项，例：&#34;input,textarea&#34;,这些标签得含有Name属性
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.data</td>
+					<td>String</td>
+					<td>
+						
+						表单提交AJAX的额外数据；和opts.goOpts.data是一样的；
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.sucShowMsgTime</td>
+					<td>String</td>
+					<td>
+						
+						成功后显示成功MSG的时间，前提是isAutoHideTip被设置为false;默认1500毫秒
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.hasTips</td>
+					<td>boolean</td>
+					<td>
+						
+						是否有Tip显示,默认为true(显示)
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.isAutoHideTip</td>
+					<td>boolean</td>
+					<td>
+						
+						是否在请求回来后自动隐藏tip，默认true(隐藏)
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.successText</td>
+					<td>String</td>
+					<td>
+						
+						验证成功时显示的文字,在默认opts.validationOpts.success不被修改时有效
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.valiOpts</td>
+					<td>String</td>
+					<td>
+						
+						Validation组件的参数，参见Validation组件说明;opts.valiOpts.*的属性都可以opts.*方式配置，如果有相同，以opts.valiOpts为优先
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.goOpts</td>
+					<td>String</td>
+					<td>
+						
+						Go组件的参数，参见GO组件说明
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.tipsOpts</td>
+					<td>String</td>
+					<td>
+						
+						Tips组件的参数，参见Tips组件说明
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>showTips</td>
+						
+						<td>
+							
+							设置Tip为显示状态
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>hideTips</td>
+						
+						<td>
+							
+							设置Tip为隐藏状态
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>setTipStyle</td>
+						
+						<td>
+							
+							重置Tips位置为最佳显示位置；也可设置Tips的宽度
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>width</td>
+												<td>Number</td>
+												<td>
+													
+													Tips的宽度,可选参数
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>setTipContent</td>
+						
+						<td>
+							
+							重置Tips位置为最佳显示位置；也可设置Tips的宽度
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>content</td>
+												<td>String</td>
+												<td>
+													
+													重置Tips的内容
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Send</td>
+				<td>Send的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+
+            var frmSend = new Send({
+
+				form:&#34;#frmInfo&#34;
+
+				,&#34;url&#34;:&#34;/&#34;
+
+				,&#34;successText&#34;:&#34;验证成功了耶&#34;
+
+				,goOpts:{
+
+					&#34;success&#34;:function(){
+
+						console.log(&#34;GO success&#34;);
+
+					}
+
+					,&#34;fail&#34;:function(){
+
+						console.log(&#34;GO fail&#34;);
+
+					}
+
+				}
+
+			});
+
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,444 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Validation</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Validation</h1>
+		<p>描述 : 表单验证</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://10.154.156.120:9000/_demo/m/validation/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opts</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>opts.form</td>
+					<td>String|HTMLElement</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						要验证提交的Form
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.events</td>
+					<td>String</td>
+					<td>
+						
+						被验证的DOM本身能被哪些事件触发，默认没有；如opts.events=&#34;focus blur&#34;
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.rule</td>
+					<td>String|RegExp|Function</td>
+					<td>
+						
+						规则注入
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.messages</td>
+					<td>Object</td>
+					<td>
+						
+						全局消息配置
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.userCustomData</td>
+					<td>Object</td>
+					<td>
+						
+						用户定义数据配置
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.defaultMsg</td>
+					<td>String</td>
+					<td>
+						
+						缺省错误消息配置
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.propertys</td>
+					<td>String</td>
+					<td>
+						
+						自定义属性配置，规定在使用本组件时的HTML自定义属性
+
+						
+							<table class="ui-table">
+								<tr>
+									<th>参数名称</th>
+									<th>参数类型</th>
+									<th>说明</th>
+								</tr>
+								
+										
+										<tr>
+											<td>opts.propertys.prefix</td>
+											<td>String</td>
+											<td>
+												
+												自定义属性的前缀
+											</td>
+										</tr>
+									
+								
+										
+										<tr>
+											<td>opts.propertys.validata</td>
+											<td>String</td>
+											<td>
+												
+												自定义属性 - 验证规则集名称
+											</td>
+										</tr>
+									
+								
+										
+										<tr>
+											<td>opts.propertys.user</td>
+											<td>String</td>
+											<td>
+												
+												自定义属性 - 在参数userCustomData里对应的key值
+											</td>
+										</tr>
+									
+								
+							</table>
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.beforeValidata</td>
+					<td>Function</td>
+					<td>
+						
+						返回值是 ===false时，程序执行中止；不进入验证，和提交阶段；其它值是反之,此时是否进入提交看验证是否通过，通过时可提交
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.success</td>
+					<td>Function</td>
+					<td>
+						
+						表单验证单控件成功时的回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.fail</td>
+					<td>Function</td>
+					<td>
+						
+						验证成功时显示的文字
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.beforeSubmit</td>
+					<td>Function</td>
+					<td>
+						
+						返回值!==true时，表单不会刷新方式提交；如果返回值是true,会影响异步回调的submit函数,默认false
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.submit</td>
+					<td>Function</td>
+					<td>
+						
+						验证成功允许提交后的回调
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>submit</td>
+						
+						<td>
+							
+							表单提交
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>isSuccess</td>
+						
+						<td>
+							
+							在Submit提交时，判断过程是否全验证通过，如果全通过，返回值是TRUE，反之
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getErrorInfo</td>
+						
+						<td>
+							
+							获取错误信息列表         *  只有发生submit事件验证中才正常获取
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Validation</td>
+				<td>Validation的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+			var validate = new Validation({
+				form:&#34;#frmInfo&#34;
+				,&#34;defaultMsg&#34;:&#34;出错了&#34;
+				,rule:{
+					number:&#34;\/^[0-9]+$\/&#34;
+					,require:function(){
+						var value = $(this).val();
+						if($.trim(value) == &#34;&#34;){
+							return false;
+						}else{
+							return true;
+						}
+					}
+					,lleng:function(){
+						return true
+					}
+				}
+				,events:&#34;focus blur change&#34;
+				,success:function(type){
+					log(&#34;Global success&#34;,type,this)
+				}
+				,fail:function(type, errData){
+					log(&#34;Global ------&#34;,type,errData,this.value)
+				}
+				,messages:{
+					&#34;AtoB&#34;:&#34;输入字的范围是最小{A}最大{B}&#34;
+					,&#34;number&#34;:&#34;仅能输入数字require&#34;
+					,&#34;require&#34;:&#34;不能为空&#34;
+				}
+				,userCustomData:{
+					&#34;ccc&#34;:{
+						&#34;validata&#34;:&#34;number  require&#34;
+						,&#34;number&#34;:&#34;仅能输入数字&#34;
+						,&#34;require&#34;:&#34;不能为空&#34;
+
+						//type:blur,focus,submit哪种事件引发的成功
+						,&#34;success&#34;:function(type){
+							log(&#34;Single success&#34;,type,this)
+						}
+						,&#34;fail&#34;:function(type, errData){
+							log(&#34;Single ======&#34;,type,errData,this.value)
+						}
+					}
+
+				}
+				,beforeValidata:function(){
+					console.log(&#34;beforeValidata&#34;, this);
+				}
+				,submit:function(){
+					log(this._form.serialize())
+					log(&#34;submit&#34;,this);
+				}
+			});
+		});
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

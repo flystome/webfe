@@ -1,0 +1,568 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Cutpicture</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Cutpicture</h1>
+		<p>描述 : 图片裁截</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://localhost:9000/_demo/m/cutpicture/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opts</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>opts.container</td>
+					<td>HTMLElement</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						被缩放的容器
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.img</td>
+					<td>Object</td>
+					<td>
+						
+						图片Dom,必须是container容器的子Dom；查找方式为container.find(img),默认值是”img“
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.plus</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						放大的按钮DOM
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.subtract</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						缩小的按钮DOM
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.view</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						恢复初始按钮DOM
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.levelDom</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						等级显示容器
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.progressContainer</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						进行条容器
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.progressDom</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						进行条容器进度的容器
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.dotDom</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						进行条容器上的点
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.maxLevel</td>
+					<td>Number</td>
+					<td>
+						
+						最大放大等级，默认10级
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.offsetX</td>
+					<td>Number</td>
+					<td>
+						
+						X偏移值
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.speed</td>
+					<td>Number</td>
+					<td>
+						
+						每次放大或缩小的数值；默认为”10“px;以宽为参考
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.cutWidth</td>
+					<td>Number</td>
+					<td>
+						
+						裁后的最终宽；默认是0，即按图片显示的大小，当为0或null是都是图片显示的大小；它必须是cutWidth/cutHeight = $(opts.container).width() / $(opts.container).height(); getData的数据会根据cutWidth / $(opts.container).width()的比例，计算出其它值
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.cutHeight</td>
+					<td>Number</td>
+					<td>
+						
+						裁后的最终高；默认是0，即按图片显示的大小，当为0或null是都是图片显示的大小；它必须是cutWidth/cutHeight = $(opts.container).width() / $(opts.container).height(); getData的数据会根据cutWidth / $(opts.container).width()的比例，计算出其它值
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.load</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						控件的图片加载中
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.success</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						控件初始化成功 OR 图片加载成功
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.fail</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						控件初始化失败 OR 图片加载失败
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>zoom</td>
+						
+						<td>
+							
+							图片的放大或缩小接口
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>type</td>
+												<td>String|Number</td>
+												<td>
+													
+													取值范围 “+”，放大；“-”缩小；其它仅能为数值型，即放大的级别，可为小数
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getData</td>
+						
+						<td>
+							
+							获取相关数据，如原始图片大小(width,height)、当前的图片大小(width,height)、当前的显示起点(x,y)
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>scale</td>
+						
+						<td>
+							
+							设置显示级别
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>level</td>
+												<td>Number</td>
+												<td>
+													
+													放大级别，可为小数
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getImgDom</td>
+						
+						<td>
+							
+							获取图片Dom
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>initView</td>
+						
+						<td>
+							
+							初始化视图到最小级别
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>loadImg</td>
+						
+						<td>
+							
+							初始化视图到最小级别
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>imgUrl</td>
+												<td>String</td>
+												<td>
+													
+													图片地址
+												</td>
+											</tr>
+										
+									
+											
+											<tr>
+												<td>callback</td>
+												<td>Function</td>
+												<td>
+													
+													回调         *                                  参数:①img对象{object}，②成功或失败的标识{boolean},true为成功
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getCenter</td>
+						
+						<td>
+							
+							获取可视区域中心点
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Cutpicture</td>
+				<td>Cutpicture的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+
+            new Cutpicture({
+
+                container:&#34;.picBar&#34;             // 控件容器Dom
+
+                ,plus:&#34;.J_ZoomUp&#34;               // +按钮
+
+                ,subtract:&#34;.J_ZoomDown&#34;         // -按钮
+
+                ,view:&#34;.J_base&#34;                 // 恢复初始按钮
+
+                ,maxLevel:30                    // 放大等级，默认10级
+
+                ,progressContainer:$(&#34;.pro&#34;)    // 进行条容器
+
+                ,progressDom:$(&#34;.l&#34;)            // 进行条容器进度的容器
+
+                ,dotDom:$(&#34;.dot&#34;)               // 进行条容器上的点
+
+                ,offsetX:6                      // 偏移值
+
+                ,speed:40                       // 每次放大或缩小的数值；默认为10px;以宽为参考；
+
+                ,cutWidth:1500
+
+                ,cutHeight:1515
+
+            });
+
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

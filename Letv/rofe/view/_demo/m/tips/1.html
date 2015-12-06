@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tips</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+<style type="text/css">
+	.module-demo {
+		width: 800px;
+		height: 60px;
+		margin:30px;
+		position: relative;
+	}
+	.rt{position: fixed;right: 30px;top:20px;}
+	.rb{position: fixed;right: 30px;bottom: 20px;}
+	.cc{position: fixed;right: 45%;bottom: 55%;}
+	.lb{position: fixed;left: 20px;bottom: 20px;}
+</style>
+
+</head>
+<body>
+	<h2>poptip</h2>
+	<p>这里演示一下 poptip 下的模块的使用。</p>
+	<button>Tip提示框示例1,点击我看看</button>
+	<button class="cc">Tip提示框示例3,点击我看看</button>
+	<button class="rb">Tip提示框示例4,点击我看看</button>
+	<div class="lb">
+		<button data-parent="1">Tip提示框示例5,点击我看看</button>
+	</div>
+	<div class="rt">
+		<button data-parent="1">Tip提示框示例2,点击我看看</button>
+	</div>
+
+<!--
+	<div class="module-demo">
+		<div class="ui-poptip">
+			<div class="ui-poptip-container">
+				<div class="ui-poptip-arrow ui-poptip-arrow-left">
+					<em></em>
+					<span></span>
+				</div>
+				<a href="javascript:void(0);" class="ui-poptip-close">x</a>
+				<div class="ui-poptip-content">
+					<p>提示提示提示提示提示提示</p>
+					<p>提示提示提示提示提示提示</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	-->
+
+
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>   
+	
+	<!-- 私有js -->
+	<script type="text/javascript">
+	$(function(){
+		$("button").click(function(){
+
+			var html = "123"
+			var element = this;
+			var parent = null;
+			if($(this).data("parent") == "1"){
+				parent = $(this).parent();
+			}
+			// 例1
+			seajs.use('tips', function(Tips){
+				
+				var tip = new Tips({
+					content:html
+					,zIndex:10009
+					,width:500
+					,target:element
+					,offset:{
+						y:0
+						,x:0
+					}
+					,hasCloseBtn:true
+					,parent:parent
+					,cancel:function(){						
+						console.log("callback cancel guid:" + this.guid)
+					}
+					,show:function(){						
+						console.log("callback show guid:" + this.guid)
+					}
+				});
+				//tip.setContent(12399);
+			});		
+		});
+	});
+	</script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

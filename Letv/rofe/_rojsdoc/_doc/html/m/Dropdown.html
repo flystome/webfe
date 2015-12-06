@@ -1,0 +1,380 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Dropdown</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Dropdown</h1>
+		<p>描述 : 下拉列表</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://localhost:9000/_demo/m/dropdown/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opts</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>opts.btn</td>
+					<td>String|HTMLElement</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						触发出列表的按钮Dom
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.list</td>
+					<td>String|HTMLElement</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						列表Dom
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.btnOpenEvent</td>
+					<td>String</td>
+					<td>
+						
+						按钮Dom触发显示事件，默认为mouseenter
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.btnCancelEvent</td>
+					<td>String</td>
+					<td>
+						
+						按钮Dom触发隐藏事件，默认为mouseleave；--- debug --- 暂不支持btnOpenEvent和btnCancelEvent事件都click的时候，即点一下显示再点一下隐藏的情况
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.listOpenEvent</td>
+					<td>String</td>
+					<td>
+						
+						列表Dom触发显示事件，默认为mouseenter
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.listCancelEvent</td>
+					<td>String</td>
+					<td>
+						
+						列表Dom触发隐藏事件，默认为mouseleave
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.init</td>
+					<td>Function</td>
+					<td>
+						
+						组件被初始化完后回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.beforeOpen</td>
+					<td>Function</td>
+					<td>
+						
+						列表Dom被显示前回调；第一次参数是最后一次触发的按钮，第二个参数是被显示列表
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.open</td>
+					<td>Function</td>
+					<td>
+						
+						列表Dom被显示时回调；第一次参数是最后一次触发的按钮，第二个参数是被显示列表
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.beforeCancel</td>
+					<td>Function</td>
+					<td>
+						
+						列表Dom被隐藏前回调；第一次参数是最后一次触发的按钮，第二个参数是被隐藏列表
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.cancel</td>
+					<td>Function</td>
+					<td>
+						
+						列表Dom被隐藏时回调；第一次参数是最后一次触发的按钮，第二个参数是被隐藏列表
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.time</td>
+					<td>Function</td>
+					<td>
+						
+						事件延迟器时间，默认200毫秒
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>hide</td>
+						
+						<td>
+							
+							强制列表被隐藏,并触发隐藏回调
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getCurrBtnElement</td>
+						
+						<td>
+							
+							获取当前触发显示列表的按钮，无列表显示时，返回值为null
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getBtnElements</td>
+						
+						<td>
+							
+							获取按钮列表Dom
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getListElements</td>
+						
+						<td>
+							
+							获取下拉列表Dom
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Dropdown</td>
+				<td>Dropdown的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+			var dropdown = new Dropdown({
+				btn:&#34;.J_btn&#34;
+				,list:&#34;.J_list&#34;
+				,btnOpenEvent:&#34;mouseenter click&#34;
+				,btnCancelEvent:&#34;mouseleave&#34;
+				,listOpenEvent:&#34;mouseenter&#34;
+				,listCancelEvent:&#34;mouseleave&#34;
+				,time:200
+				,open:function(){
+					var currBtnElement = this.getCurrBtnElement();
+					$(currBtnElement).addClass(&#34;bgRed&#34;);
+				}
+				,cancel:function(){
+					var currBtnElement = this.getCurrBtnElement();
+					$(currBtnElement).removeClass(&#34;bgRed&#34;);
+				}
+			});
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

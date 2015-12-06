@@ -1,0 +1,353 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Uploader</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Uploader</h1>
+		<p>描述 : 对上传组件upload的封装;</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://localhost:9000/_demo/le/uploader/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opt</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>opt.token</td>
+					<td>String</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						上传令牌
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.bucket</td>
+					<td>String</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						上传的目录，由后端人员提供名字；和opt.getUploadURL参数互斥
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.getUploadURL</td>
+					<td>Function</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						获取上传地址的接口；和opt.bucket参数互斥
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.setHeader</td>
+					<td>Function</td>
+					<td>
+						
+						当次上传的头信息设置，参数为当次要上传的file文件对象
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.upOpt</td>
+					<td>Function</td>
+					<td>
+						
+						上传Upload对象的参数；参考Upload说明；
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.upURLOpt</td>
+					<td>Function</td>
+					<td>
+						
+						获取上传地址参数（上传文件前要获取上传地址；）Go的配置;通常不需要配置
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>getUpload</td>
+						
+						<td>
+							
+							获取上传Upload对象(和Uploader不是同一个对象)
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Uploader</td>
+				<td>返回Uploader的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+
+            html:
+            &lt;div id=&#34;uploadbar&#34;&gt;
+                &lt;!--
+                &lt;div class=&#34;ro-upload-box&#34;&gt;
+                    &lt;input type=&#34;file&#34; style=&#34;display:none&#34;&gt;
+                    &lt;span class=&#34;ro-upload-btn&#34;&gt;上 传&lt;/span&gt;
+                &lt;/div&gt;
+                --&gt;
+            &lt;/div&gt;
+            &lt;div class=&#34;btn&#34;&gt;提 交&lt;/div&gt;
+            &lt;div id=&#34;preview&#34;&gt;&lt;/div&gt;
+
+            JS:
+            var uploader = new Uploader({
+                token:&#34;10298ccca5AzuHm1njfbJ2khoGMkFuh73Nkm1ypbLQxeupoWWgJzg0Qm3NwU3iQDiXz2zk7Yh&#34;
+                ,uploadSuccess:function(){
+                    log(&#34;uploadSuccess...&#34;)
+                }
+                ,getUploadURL:function(file){
+                    return &#34;https://s3proxy.scloud.letv.com/api/v1/url?bucket=contacticon&amp;type=&#34; +  file.type
+                }
+                ,upOpt: {
+                    &#34;container&#34;: $(&#34;#uploadbar&#34;)
+                    ,&#34;auto&#34;:false
+                    ,&#34;fileSizeLimit&#34;: &#34;10M&#34;
+                    ,&#34;fileTypeDesc&#34;: &#34;image/jpeg,image/jpg,image/png,image/bmp&#34;
+                    ,&#34;buttonText&#34;: &#34;选择图片&#34;
+                    ,&#34;onSelectError&#34;: function(file, errorCode, errorMsg) {
+                        if (errorCode == &#34;M002&#34;) {
+                            log(&#34;请上传10M以内的图片&#34;)
+                        } else {
+                            log(errorMsg)
+                        }
+                    }
+                    ,onUploadStart:function(file){
+
+                        $(&#39;[data-index=&#34;&#39; + file.index + &#39;&#34;] label&#39;).html(&#39;上传中...&#39;);
+                        //this.abort(file.index);
+                    }
+                    ,&#34;onUploadError&#34;: function(file, errorCode, errorMsg) {
+                        log(&#34;onUploadError&#34;, arguments);
+                        $(&#39;[data-index=&#34;&#39; + file.index + &#39;&#34;]&#39;).html(&#39;【上传失败】：&#39; + file.name);
+                    }
+                    ,&#34;onUploadSuccess&#34;:function(file, data, response){
+                        $(&#39;[data-index=&#34;&#39; + file.index + &#39;&#34;]&#39;).html(&#39;【图片加载中...】：&#39; + file.name);
+                        var cnt = 5;
+                        var load = function(){
+                            cnt--;
+                            if(cnt == 0){
+                                $(&#39;[data-index=&#34;&#39; + file.index + &#39;&#34;]&#39;).html(&#39;【图片加载失败...】：&#39; + file.name);
+                                return;
+                            }
+                            var img = new Image();
+                            img.onload = function(){
+                                $(&#39;[data-index=&#34;&#39; + file.index + &#39;&#34;]&#39;).html(&#39;&lt;img src=&#34;&#39; + file.downloadPath +&#39;&#34;&gt;&#39;);
+                                $(&#39;[data-index=&#34;&#39; + file.index + &#39;&#34;] img&#39;).fadeIn();
+                            }
+                            img.onerror = function(){
+                                log(&#34;Error&#34;)
+                                load();
+                            }
+                            img.src = file.downloadPath;
+                        }
+                        load();
+                        
+                    }
+                    ,initError:function(){
+                        log(&#34;initError&#34;, arguments);
+                    }
+                    ,onSelect:function(file){
+
+                        var me = this;
+
+                        var tpl = &#39;&lt;div class=&#34;load&#34; data-index=&#34;{index}&#34;&gt;\
+                            &lt;label&gt;【等待上传...】&lt;/label&gt;\
+                            &lt;span data-key=&#34;{index}&#34;&gt;点击取消&lt;/span&gt;\
+                            {name}\
+                        &lt;/div&gt;&#39;;
+
+                        var dom = $(tpl.replace(/{(\w+)}/g, function(a, b){
+
+                            return file[b];
+                        }));
+
+                        $(&#34;#preview&#34;).append(dom);
+
+                        dom.find(&#34;span&#34;).bind(&#34;click&#34;, function(){
+                            var key = $(this).attr(&#34;data-key&#34;);
+                            me.abort(key);
+                            dom.fadeOut(function(){
+                                $(this).remove();
+                            });
+                        });
+
+                    }
+                }
+                // GO 的配置
+                ,upURLOpt: {
+                    
+                }
+            });
+            
+            $(&#34;.btn&#34;).click(function(){
+                uploader.getUpload().send();
+            });
+
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

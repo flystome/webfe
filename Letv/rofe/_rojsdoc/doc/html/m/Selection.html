@@ -1,0 +1,365 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Selection</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Selection</h1>
+		<p>描述 : 模块数据加载初始化</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://localhost:9000/_demo/m/selection/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>ops</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>ops.dom</td>
+					<td>HTMLElement</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						Dom
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.getParam</td>
+					<td>Function</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						取接口必须参数的回调（参数为上级被选中的value值）；当ops.getData有值时，此设置可以为空     *											返回值要求必须是JSON格式，key按接口需要来     *											在ops.getData无配置值时此函数返回的是直接可用数据
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.getData</td>
+					<td>Function</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						ajax获取数据；当ops.getParam有值时，此设置可以为空
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.child</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						子Dom
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.isFirstLoad</td>
+					<td>Boolean</td>
+					<td>
+						
+						是否第一次要加载
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.callback</td>
+					<td>Boolean</td>
+					<td>
+						
+						值设置后的回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.defText</td>
+					<td>String</td>
+					<td>
+						
+						默认显示值
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.getContent</td>
+					<td>Function</td>
+					<td>
+						
+						生成每个option时前的回调（参数是接口返回数据单对象和对象的索引名）     *											返回值要求必须是这种格式return {&#34;value&#34;:&#34;&#34;,&#34;text&#34;:&#34;&#34;}
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Selection</td>
+				<td>Selection的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+
+     
+
+        	&lt;select id=&#34;sltYear&#34;&gt;&lt;/select&gt;
+
+        	&lt;select id=&#34;sltMonth&#34;&gt;&lt;/select&gt;
+
+        	&lt;select id=&#34;sltDate&#34;&gt;&lt;/select&gt;
+
+        	
+
+            new Selection({
+
+                &#34;dom&#34;:&#34;#sltYear&#34;
+
+            	,&#34;child&#34;:&#34;#sltDate&#34;
+
+                ,isFirstLoad:true
+
+            	,&#34;defText&#34;:&#34;请选择年&#34;
+
+                ,&#34;getParam&#34;:function(cid){
+
+                    return [2000, 2001, 2002, 2003, 2004];
+
+                }
+
+                ,&#34;getContent&#34;:function(item,index){
+
+                	return {
+
+                		&#34;value&#34;:item
+
+                		,&#34;text&#34;:item
+
+                	}
+
+                }
+
+            });
+
+            new Selection({
+
+                &#34;dom&#34;:&#34;#sltMonth&#34;
+
+            	,&#34;child&#34;:&#34;#sltDate&#34;
+
+                ,isFirstLoad:true
+
+            	,&#34;defText&#34;:&#34;请选择月&#34;
+
+                ,&#34;getParam&#34;:function(cid){
+
+                    return [1,2,3,4,5,6,7,8,9,10,11,12];
+
+                }
+
+                ,&#34;getContent&#34;:function(item,index){
+
+                	return {
+
+                		&#34;value&#34;:item
+
+                		,&#34;text&#34;:me._getAddZero(item)
+
+                	}
+
+                }
+
+            });
+
+
+
+            new Selection({
+
+                &#34;dom&#34;:&#34;#sltDate&#34;
+
+            	,&#34;defText&#34;:&#34;请选择日&#34;
+
+                ,isFirstLoad:true
+
+                ,&#34;getParam&#34;:function(cid){
+
+                    return me._getNumbers(1, 10);
+
+                }
+
+                ,&#34;getContent&#34;:function(item,index){
+
+                	return {
+
+                		&#34;value&#34;:item.id
+
+                		,&#34;text&#34;:item.name
+
+                	}
+
+                }
+
+                ,getData:function(){
+
+                    var selection = this;
+
+                    // AJAX请求加回调
+
+                    me._search(function(data){
+
+                        selection.setData(data);
+
+                    });
+
+                }
+
+                ,&#34;callback&#34;:function(){
+
+                    !isNaN(day) &amp;&amp; $(this).val(day);
+
+                }
+
+            });
+
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

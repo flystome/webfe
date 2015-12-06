@@ -1,0 +1,513 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Upload</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Upload</h1>
+		<p>描述 : 模拟Select下拉框,注意，此组件依赖input的contentChange自定义事件</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://localhost:9000/_demo/m/upload/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opt</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+		
+			<tr class="trparent">
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			
+				<tr>
+					<td>ops.container</td>
+					<td>HTMLElement</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						组件容器
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.uploader</td>
+					<td>String</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						上传地址
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.initError</td>
+					<td>function</td>
+					<td>
+						
+						初始化控件时出错了,一般是浏览器不支持HTML5上传且没有传递opt.swf参数所致
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.formData</td>
+					<td>Object</td>
+					<td>
+						
+						附带提交的数据，是JSON格式
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.swf</td>
+					<td>String</td>
+					<td>
+						
+						当不支持HTML5，使用Flash上传的Flash文件地址
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.buttonClass</td>
+					<td>String</td>
+					<td>
+						
+						上传按钮的样式,默认“ro-upload-btn”
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.buttonBox</td>
+					<td>String</td>
+					<td>
+						
+						组件的按钮的样式，默认“ro-upload-box”
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.buttonText</td>
+					<td>String</td>
+					<td>
+						
+						上传组件显示的文本内容，默认“上 传”
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.multi</td>
+					<td>Boolean</td>
+					<td>
+						
+						是否支持多个上传，默认支持
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.fileTypeDesc</td>
+					<td>String</td>
+					<td>
+						
+						支持可上传什么类型的文件(HTML5的上传使用)，默认“All Files”；可设置例如&#39;image/*&#39;、&#39;image/png&#39;
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.fileTypeExts</td>
+					<td>String</td>
+					<td>
+						
+						支持可上传什么类型的文件(Flash的上传使用)，默认“*.*”；可设置例如&#39;*.gif,*.jpg,*.jpeg,*.bmp,*.png&#39;
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.fileObjName</td>
+					<td>String</td>
+					<td>
+						
+						接口接收的文件Key字段,默认“upfile”
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.filename</td>
+					<td>String</td>
+					<td>
+						
+						上传时带到接口文件的名称，带扩展名；默认使用选择的原始名
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.fileSizeLimit</td>
+					<td>String</td>
+					<td>
+						
+						上传文件大小限制，0为不限制；默认为0
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.uploadLimit</td>
+					<td>String</td>
+					<td>
+						
+						最大可上传文件数,默认999
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.height</td>
+					<td>String</td>
+					<td>
+						
+						上传控件的高度，默认30
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.width</td>
+					<td>String</td>
+					<td>
+						
+						上传控件的宽度，默认120
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.auto</td>
+					<td>String</td>
+					<td>
+						
+						是否自动上传，默认是
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.tpl</td>
+					<td>String</td>
+					<td>
+						
+						HTML5上传的模板，默认[&#39;&lt;div class=&#34;{buttonBox}&#34;&gt;&#39;,&#39;&lt;input type=&#34;file&#34; style=&#34;display:none&#34; multiple=&#34;{multi}&#34; name=&#34;{fileObjName}&#34;&gt;&#39;,&#39;&lt;span class=&#34;{buttonClass}&#34;&gt;{buttonText}&lt;/span&gt;&#39;,&#39;&lt;/div&gt;&#39;].join(&#34;&#34;)
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.onUploadStart</td>
+					<td>function</td>
+					<td>
+						
+						开始上传时回调，第一个参数是File对象
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.onUploadProgress</td>
+					<td>function</td>
+					<td>
+						
+						上传过程中回调，第一个参数是File对象，第二个参数是文件上传了的大小，第三个参数是被上传的文件是多大的
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.onUploadSuccess</td>
+					<td>function</td>
+					<td>
+						
+						上传成功后回调，第一个参数是File对象，第二个参数是上传接口的返回值
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.onUploadComplete</td>
+					<td>function</td>
+					<td>
+						
+						上传完成后回调，不管是上传是成功还是失败；都会回调，第一个参数是File对象
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.onSelect</td>
+					<td>function</td>
+					<td>
+						
+						选择上传文件时回调，第一个参数是File对象
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.onSelectError</td>
+					<td>function</td>
+					<td>
+						
+						选择的文件不符合要求时回调，第一个参数是File对象，第二个参数是错误码，第三个参数是错误内容
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>ops.onUploadError</td>
+					<td>function</td>
+					<td>
+						
+						上传文件出错时回调，第一个参数是File对象，第二个参数是错误码，第三个参数是错误内容
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Upload</td>
+				<td>返回Upload的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+
+            //HTML:
+            &lt;div id=&#34;uploadbar&#34;&gt;&lt;/div&gt;
+            &lt;div class=&#34;btn&#34;&gt;提交&lt;/div&gt;
+
+            //JS:
+            var upload = new Upload({
+                &#34;container&#34;:&#34;#uploadbar&#34;
+                ,&#34;uploader&#34;:&#34;/upload&#34;
+                ,&#34;formData&#34;:{
+                    &#34;data&#34;:123
+                }
+                ,&#34;swf&#34;:&#34;http://localhost:9000/ro/m/upload/js/1.0.1/uploadify.swf&#34;
+                ,&#34;height&#34;:&#34;30px&#34;
+                ,&#34;width&#34;:&#34;60px&#34;
+                ,&#34;fileSizeLimit&#34;:0   // 0为不限制
+                ,&#34;uploadLimit&#34;:10    // 最大可上传文件数
+                ,&#34;auto&#34;:false
+                ,&#34;fileTypeDesc&#34;:&#34;image/png&#34;
+                //,&#34;buttonText&#34;:&#34;upload&#34;
+                ,&#34;onUploadStart&#34;:function(file){
+                    log(&#34;onUploadStart:&#34;,arguments)
+                }
+                ,&#34;onUploadProgress&#34;:function(file, fileBytesLoaded, fileTotalBytes){
+                    log(&#34;onUploadProgress:&#34;,arguments)
+                }
+                ,&#34;onUploadSuccess&#34;:function(file, data, response){
+                    log(&#34;onUploadSuccess:&#34;,arguments)
+                }
+                ,&#34;onUploadComplete&#34;:function(file){
+                    log(&#34;onUploadComplete:&#34;,arguments)
+                }
+                ,&#34;onSelect&#34;:function(file){
+                    log(&#34;onSelect:&#34;,arguments)
+                }
+                ,&#34;onSelectError&#34;:function(file, errorCode, errorMsg){
+                    log(&#34;onSelectError:&#34;,arguments)
+                }
+                ,&#34;onUploadError&#34;:function(file, errorCode, errorMsg){
+                    log(&#34;onUploadError:&#34;,arguments)
+                }
+            });
+
+            $(&#34;.btn&#34;).click(function(){
+                upload.send();
+            });
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

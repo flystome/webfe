@@ -1,0 +1,245 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Formsend</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Formsend</h1>
+		<p>描述 : 表单验证</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opts</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>opts.form</td>
+					<td>String</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						要验证提交的Form；opts.valiOpts.form和opts.form必须有一个存在值；当两者都存在值，但不一致时，以opts.valiOpts.form为准；
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.url</td>
+					<td>String</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						表单提交AJAX的URL；和opts.goOpts.url是一样的；
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.data</td>
+					<td>String</td>
+					<td>
+						
+						表单提交AJAX的额外数据；和opts.goOpts.data是一样的；
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.successText</td>
+					<td>String</td>
+					<td>
+						
+						验证成功时显示的文字,在默认opts.validationOpts.success不被修改时有效
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.valiOpts</td>
+					<td>String</td>
+					<td>
+						
+						Validation组件的参数，参见Validation组件说明;opts.valiOpts.*的属性都可以opts.*方式配置，如果有相同，以opts.valiOpts为优先
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.goOpts</td>
+					<td>String</td>
+					<td>
+						
+						Go组件的参数，参见GO组件说明
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Formsend</td>
+				<td>Formsend的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+
+            var frmSend = new Formsend({
+
+				form:&#34;#frmInfo&#34;
+
+				,&#34;url&#34;:&#34;/&#34;
+
+				,&#34;successText&#34;:&#34;验证成功了耶&#34;
+
+				,goOpts:{
+
+					&#34;success&#34;:function(){
+
+						console.log(&#34;GO success&#34;);
+
+					}
+
+					,&#34;fail&#34;:function(){
+
+						console.log(&#34;GO fail&#34;);
+
+					}
+
+				}
+
+			});
+
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

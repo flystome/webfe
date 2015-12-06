@@ -1,0 +1,58 @@
+@input-width: 200px;
+@input-bdcol: #c1c1c1;
+@select-width: 220px;
+.ui-form {
+	font-size: 12px;
+	line-height: 1.5;
+	color: #666;
+}
+.ui-form-item {
+	padding-bottom: 20px;
+	line-height: 24px;
+	.ui-form-label {
+		float: left;
+		width: 170px;
+		text-align: right;
+		font-size: 14px;
+		.ui-form-required {
+			color: #ff0000;
+			font-family: 'SimSun';
+			margin-right: 6px;
+		}
+	}
+	.ui-form-box {
+		margin-left: 190px;
+		.ui-form-input {
+			width: @input-width;
+			padding:0 10px;
+			line-height: 24px;
+			color: #595959;
+			border:1px solid @input-bdcol;
+			margin:0 10px 3px 0;
+		}
+		.ui-form-textarea {
+			width: @input-width;
+			padding: 10px;
+			color: #595959;
+			border:1px solid @input-bdcol;
+			margin:0 10px 3px 0;
+		}
+		.ui-form-select {
+			width: @select-width;
+			padding:0 5px;
+			height: 22px;
+			line-height: 22px;
+			border:1px solid @input-bdcol;
+			margin-right: 10px;
+		}
+		.ui-form-checkcode {
+			width: 100px;
+		}
+		.ui-checkcode-img {
+			vertical-align: middle;
+		}
+		.ui-form-explain {
+			color: #b2b2b2;
+		}
+	}
+}

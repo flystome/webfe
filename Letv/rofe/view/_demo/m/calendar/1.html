@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calendar</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+<style type="text/css">
+.clearx:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}.clearx{zoom:1;}
+.list{
+	/*width:329px;*/
+	margin:20px;
+	display:inline-block;
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+}
+.list .ro_date_cell{
+	border-right:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	display:inline-block;
+	padding:8px;
+    width:32px;
+	cursor: pointer;
+	/*width:30px;*/
+	text-align:center;
+}
+.ro_date_title{}
+.ro_date_head{background:#ddd;font-weight: bold;color: #fff;cursor: default !important;}
+.ro_date_foot{background:#e7e7e7;}
+.ro_date_foot select{margin:0 5px;}
+.ro_date_hui{background:#f1f1f1;}
+.ro_date_disabled{color:#ccc;cursor: default !important;}
+.ro_date_enter{
+	display: block;
+	clear:both;
+}
+.ro_date_line{
+	width:auto !important;
+	display: block !important;
+	cursor: default !important;
+}
+.ro_date_br{
+	height:0px;
+	line-height: :0px;
+	font-size: 0px;
+	width:0px;
+}
+.list .ro_date_today,.list .ro_date_done{
+	width: :50px;
+	float: left;
+	color: red;
+	cursor: pointer;
+}
+.list .ro_date_done{
+	float: right;
+	color: #00f;
+}
+.ro_date_btn{
+	display: block;
+	color: red;
+	cursor: pointer;
+	padding:0 5px;
+	color: #00f;
+    font-family: 宋体;
+}
+.ro_date_btn:hover{
+	color: #0f0;
+}
+.ro_date_left{
+	float: left;
+}
+.ro_date_right{
+	float: right;
+}
+.ro_date_today{
+    color:red;
+}
+.ro_date_select{
+    color:#fff;
+    background:#000;
+}
+button:active{
+	color: #fff;
+}
+</style>
+</head>
+<body>
+	<h2>Calendar</h2>
+    <input type="text" value="2015/04/03" id="txtInput1">
+    <input type="text" value="" id="txtInput2">
+	<button id="btn1">上月</button>
+	<button id="btn2">下月</button>
+	<br>
+	<div class="list J_list1"></div>
+	<div class="list J_list2"></div>
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+	$(function(){
+		var calendar1 = null;
+		var calendar2 = null;
+		// 例1
+		seajs.use('calendar', function(Calendar){
+			calendar1 = new Calendar({
+				container:".J_list1"
+                ,input:"#txtInput1"
+				,titleFormat:"yyyy年MM月dd日"
+				,format:"yyyy-MM-dd hh:mm:ss"
+				,callback:function(dateStr,dom){
+                    //this.hide();
+					//log(arguments)
+				}
+				,hasHour:true
+				,hasMinutes:true
+				,hasSeconds:true
+
+				//,date:"2015/05/01"
+				,fromDate:"2015/04/01"
+				,toDate:"2019/06/23"
+
+
+			});
+
+            calendar2 = new Calendar({
+				container:".J_list2"
+                ,input:"#txtInput2"
+				,titleFormat:"yyyy年MM月dd日"
+				,format:"yyyy-MM-dd"
+				,callback:function(dateStr,dom){
+                    //$("#txtInput").val(dateStr);
+					log(arguments)
+				}
+				,hasHour:false
+				,hasMinutes:false
+				,hasSeconds:false
+
+				//,date:"2015/05/01"
+				,fromDate:"2015/04/01"
+				//,toDate:"2015/05/23"
+
+
+			});
+
+            calendar1.setMaxDate(calendar2);
+            calendar2.setMinDate(calendar1);
+            /*
+			var calendar2 = new Calendar({
+				container:".list"
+				,format:"yyyy-MM-dd hh:mm:ss"
+				,callback:function(){
+					log(arguments)
+				}
+				,hasHour:false
+				,hasMinutes:false
+				,hasSeconds:false
+				//,date:"2015/05/01"
+				//,fromDate:"2015/05/20"
+				//,toDate:"2015/05/23"
+
+
+			});
+            */
+		});
+		$("#btn1").click(function(){
+			calendar1.prevMonth();
+		});
+		$("#btn2").click(function(){
+			calendar1.nextMonth();
+		});
+	});
+	</script>
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uploader</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+<style type="text/css">
+    body{padding:10px;font-size: 16px}
+    
+    h2{
+        text-shadow:1px 1px 2px #333;
+        color:#000;
+        font-family:"微软雅黑";
+        margin: 20px 0;
+    }
+    .ro-upload-box{
+        display:inline;
+    }
+    .ro-upload-btn{
+        display:inline-block;
+        padding:0 10px;
+        word-spacing:8px;
+        letter-spacing: 1px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+        font-family:"微软雅黑";
+        background:#ccc;
+        border-radius:10px;
+        box-shadow:1px 1px 14px 12px #666 inset;
+        color:#fff;
+        text-shadow:1px 1px 1px #000;
+         -moz-user-select: none;
+         -webki-user-select: none;
+         -ms-user-select: none;
+         -o-user-select: none;
+         user-select: none;
+         cursor:pointer;
+    }
+
+    #uploadbar{
+        display: inline-block;
+        width: 140px;
+    }
+
+    .btn{
+        display:inline-block;
+        padding:0 20px;
+        word-spacing:8px;
+        letter-spacing: 1px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+        font-family:"微软雅黑";
+        background:#ccc;
+        border-radius:10px;
+        box-shadow:1px 1px 14px 12px #666 inset;
+        color:#fff;
+        text-shadow:1px 1px 1px #000;
+         -moz-user-select: none;
+         -webki-user-select: none;
+         -ms-user-select: none;
+         -o-user-select: none;
+         user-select: none;
+         cursor:pointer;
+         margin-left: 20px;
+    }
+
+    #preview{margin: 20px;}
+    #preview img,#preview .load{width: 100px;height: 100px;}
+    #preview span{cursor: pointer;color: #3292f3;white-space: nowrap;}
+    #preview .load{
+        text-align: center;
+        vertical-align: middle;
+        word-wrap: break-word; 
+        margin:10px;
+        overflow: hidden;
+        float: left;
+    }
+</style>
+</head>
+<body>
+	<h2>Uploader上传扩展组件</h2>
+
+    <div id="uploadbar">
+        <!--
+        <div class="ro-upload-box">
+            <input type="file" style="display:none">
+            <span class="ro-upload-btn">上 传</span>
+        </div>
+        -->
+    </div>
+    <div class="btn">提 交</div>
+    <div id="preview"></div>
+
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+
+	$(function(){
+
+		// 例1
+		seajs.use('uploader', function(Uploader){
+            var uploader = new Uploader({
+                token:"10298ccca5AzuHm1njfbJ2khoGMkFuh73Nkm1ypbLQxeupoWWgJzg0Qm3NwU3iQDiXz2zk7Yh"
+                ,uploadSuccess:function(){
+                    log("uploadSuccess...")
+                }
+                ,bucket:"contacticon"
+                // ,getUploadURL:function(file){
+                //     return "https://s3proxy.scloud.letv.com/api/v1/url?bucket=contacticon&type=" +  file.type
+                // }
+                ,upOpt: {
+                    "container": $("#uploadbar")
+                    ,"auto":false
+                    ,"fileSizeLimit": "10M"
+                    ,"fileTypeDesc": "image/jpeg,image/jpg,image/png,image/bmp"
+                    ,"buttonText": "选择图片"
+                    ,"onSelectError": function(file, errorCode, errorMsg) {
+                        if (errorCode == "M002") {
+                            log("请上传10M以内的图片")
+                        } else {
+                            log(errorMsg)
+                        }
+                    }
+                    ,onUploadStart:function(file){
+
+                        $('[data-index="' + file.index + '"] label').html('上传中...');
+                        //this.abort(file.index);
+                    }
+                    ,"onUploadError": function(file, errorCode, errorMsg) {
+                        log("onUploadError", arguments);
+                        $('[data-index="' + file.index + '"]').html('【上传失败】：' + file.name);
+                    }
+                    ,"onUploadSuccess":function(file, data, response){
+                        $('[data-index="' + file.index + '"]').html('【图片加载中...】：' + file.name);
+                        var cnt = 5;
+                        var load = function(){
+                            cnt--;
+                            if(cnt == 0){
+                                $('[data-index="' + file.index + '"]').html('【图片加载失败...】：' + file.name);
+                                return;
+                            }
+                            var img = new Image();
+                            img.onload = function(){
+                                $('[data-index="' + file.index + '"]').html('<img style="display:none;" src="' + file.downloadPath +'">');
+                                $('[data-index="' + file.index + '"] img').fadeIn();
+                            }
+                            img.onerror = function(){
+                                log("Load Image Error count[" + (5 - cnt) + "]filepath[" + file.downloadPath + "]")
+                                load();
+                            }
+                            img.src = file.downloadPath;
+                        }
+                        load();
+                        
+                    }
+                    ,initError:function(){
+                        log("initError", arguments);
+                    }
+                    ,onSelect:function(file){
+
+                        var me = this;
+
+                        var tpl = '<div class="load" data-index="{index}">\
+                            <label>【等待上传...】</label>\
+                            <span data-key="{index}">点击取消</span>\
+                            {name}\
+                        </div>';
+
+                        var dom = $(tpl.replace(/{(\w+)}/g, function(a, b){
+
+                            return file[b];
+                        }));
+
+                        $("#preview").append(dom);
+
+                        dom.find("span").bind("click", function(){
+                            var key = $(this).attr("data-key");
+                            me.abort(key);
+                            dom.fadeOut(function(){
+                                $(this).remove();
+                            });
+                        });
+
+                    }
+                    ,onAfterUpload:function () {
+                        log("onAfterUpload")
+                    }
+                }
+                // GO 的配置
+                ,getUpUrlOpt: {
+                    
+                }
+            });
+            
+            $(".btn").click(function(){
+                uploader.getUpload().send();
+            });
+		});
+	});
+
+	</script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

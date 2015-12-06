@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Selection</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+<style type="text/css">
+</style>
+
+</head>
+<body>
+	<h2>selection</h2>
+
+	<select id="sltYear"></select>
+	<select id="sltMonth"></select>
+	<select id="sltDate"><option>请选择日</option></select>
+
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+	$(function(){
+
+		// 例1
+		seajs.use('selection', function(Selection){
+
+            new Selection({
+                "dom":"#sltYear"
+            	,"child":"#sltDate"
+                ,isFirstLoad:true
+            	,"defText":"请选择年"
+                ,"getParam":function(cid){
+                    return [2000, 2001, 2002, 2003, 2004];
+                }
+                ,"getContent":function(item,index){
+                	return {
+                		"value":item
+                		,"text":item
+                	}
+                }
+            });
+            new Selection({
+                "dom":"#sltMonth"
+            	,"child":"#sltDate"
+                ,isFirstLoad:true
+            	,"defText":"请选择月"
+                ,"getParam":function(cid){
+                    return [1,2,3,4,5,6,7,8,9,10,11,12];
+                }
+                ,"getContent":function(item,index){
+                	return {
+                		"value":item
+                		,"text":item
+                	}
+                }
+            });
+
+            new Selection({
+                "dom":"#sltDate"
+            	,"defText":"请选择日"
+                ,isFirstLoad:false
+                ,"getParam":function(cid){
+                    //return [1,2,3,4,5,6,7,8,9,10];
+                }
+                ,"getContent":function(item,index){
+                	return {
+                		"value":item.id
+                		,"text":item.name
+                	}
+                }
+                ,getData:function(){
+                    var selection = this;
+                    if($("#sltYear").val() == "" || $("#sltMonth").val() == ""){
+                        selection.setData([]);
+                        return ;
+                    }
+                    // AJAX请求加回调
+                    search(function(data){
+                        selection.setData(data);
+                    });
+                }
+                ,"callback":function(){
+                    if($(this).get(0).options.length > 1)
+                    $(this).val(2);
+                }
+            });
+		});
+
+        function search(cb){
+            setTimeout(function(){
+                cb([
+                    {
+                        id:1
+                        ,name:1
+                    }
+                    ,{
+                        id:2
+                        ,name:2
+                    }
+                ]);
+            });
+        }
+	});
+	</script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

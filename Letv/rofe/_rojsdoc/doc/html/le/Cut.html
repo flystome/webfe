@@ -1,0 +1,473 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Cut</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Cut</h1>
+		<p>描述 : 对弹框、上传、裁截图的封装;</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://localhost:9000/_demo/le/cut/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opt</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>opt.openBtn</td>
+					<td>HTMLElement</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						触发弹出对话框的按钮
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.imgElement</td>
+					<td>HTMLElement</td>
+					<td>
+						
+						图片裁好后被反写图片地址的Dom
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.isShowMsg</td>
+					<td>Boolean</td>
+					<td>
+						
+						是否有Tips提示
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.tipTimer</td>
+					<td>Number</td>
+					<td>
+						
+						Tips提示信息停留多久才关闭
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.defaultImgSrc</td>
+					<td>String</td>
+					<td>
+						
+						显示的图片地址是此图片时，工具栏不可用，不可裁图
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.initImgSrc</td>
+					<td>String</td>
+					<td>
+						
+						初始化的图片URL地址
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.token</td>
+					<td>String</td>
+					<td>
+						
+						令牌
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.setToolDisabled</td>
+					<td>Function</td>
+					<td>
+						
+						图片加载完成后；是否是正常可用的，参数为是否不可用
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.upSuccess</td>
+					<td>Function</td>
+					<td>
+						
+						上传成功回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.success</td>
+					<td>Function</td>
+					<td>
+						
+						裁图上成功回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.fail</td>
+					<td>Function</td>
+					<td>
+						
+						裁图上失败回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.loading</td>
+					<td>Function</td>
+					<td>
+						
+						裁图已经成功，正在尝试加载图片；前提是success回调没有被覆盖
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.loadSuccess</td>
+					<td>Function</td>
+					<td>
+						
+						裁图已经成功，图片尝试加载成功；前提是success回调没有被覆盖
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.loadFail</td>
+					<td>Function</td>
+					<td>
+						
+						裁图已经成功，图片尝试加载失败；前提是success回调没有被覆盖
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.beforeCut</td>
+					<td>Function</td>
+					<td>
+						
+						裁图前回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.imgLoadFail</td>
+					<td>Function</td>
+					<td>
+						
+						上传成功但加载图片失败回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.getCutURI</td>
+					<td>Function</td>
+					<td>
+						
+						获取裁图的服务地址，默认返回是https://image.scloud.letv.com/api/v1/icon
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.cutpictureOpt</td>
+					<td>Object</td>
+					<td>
+						
+						裁图参数，参考Cutpicture
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.uploaderOpt</td>
+					<td>Object</td>
+					<td>
+						
+						上传参数，参考Uploader
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.pushMsg</td>
+					<td>Object</td>
+					<td>
+						
+						过程信息和错误信息在这个回调中都能取到;参数依次是msgCode, msgString, btnElement, hasCloseBtn, isError
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.cutOpt</td>
+					<td>Object</td>
+					<td>
+						
+						截图请求Go的参数，传参需谨慎；
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>getUploader</td>
+						
+						<td>
+							
+							获取上传Uploader组件实例
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getDialog</td>
+						
+						<td>
+							
+							获取对话框Dialog组件实例
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getCutpicture</td>
+						
+						<td>
+							
+							获取切图Cutpicture组件实例
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Cut</td>
+				<td>返回Cut的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+
+            new Cut({
+                &#34;openBtn&#34;:&#34;.ui-button&#34;
+                ,&#34;imgElement&#34;:$(&#34;#img&#34;)
+                ,&#34;token&#34;:&#34;10298ccca5AzuHm1njfbJ2khoGMkFuh73Nkm1ypbLQxeupoWWgJzg0Qm3NwU3iQDiXz2zk7Yh&#34;
+                // ,&#34;success&#34;:function(data, imgURI){
+                //     log(&#34;success:&#34;,imgURI);
+                // }
+                ,&#34;fail&#34;:function(data){
+                    log(&#34;fail:&#34;,data)
+                }
+                ,initImgSrc:&#34;http://img1.imgtn.bdimg.com/it/u=1897355986,2914710187&amp;fm=21&amp;gp=0.jpg&#34;
+                ,tipTimer:3000
+                // ,&#34;dialogOpt&#34;:{
+                //     width:900
+                // }
+            });
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

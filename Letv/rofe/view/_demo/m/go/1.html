@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Go</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+
+</head>
+<body>
+	<h2>Go</h2>
+	<p>这里演示一下 ajax 下的模块的使用。</p>
+	<button>点击我</button>
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+	$(function(){
+		$("button").click(function(){
+			var me = this;
+			// 例1
+
+			for(var i = 0 ; i < 30; i++){
+				seajs.use('go', function(Go){
+					var go = new Go({
+						"url":"/"
+						,"lock":me
+						,"group":"gp"
+						,success:function(){
+							log("success")
+						}
+						,fail:function(arg){
+							log("fail",arg)
+						}
+					});
+				});
+			}
+		});
+	});
+
+
+	</script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

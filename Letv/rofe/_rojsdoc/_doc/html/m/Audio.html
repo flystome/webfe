@@ -1,0 +1,507 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Audio</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Audio</h1>
+		<p>描述 : 音频组件、仅支持HTML5的Audio标签</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://10.154.156.120:9000/_demo/m/audio/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opts</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>opts.container</td>
+					<td>Object</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						音频Dom
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.url</td>
+					<td>Object</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						音频地址
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.propertys</td>
+					<td>Object</td>
+					<td>
+						
+						音频Dom的属性         	属性 				描述			audioTracks 		返回表示可用音轨的 AudioTrackList 对象			autoplay 			设置或返回是否在加载完成后随即播放音频/视频			buffered 			返回表示音频/视频已缓冲部分的 TimeRanges 对象			controller 			返回表示音频/视频当前媒体控制器的 MediaController 对象			controls 			设置或返回音频/视频是否显示控件（比如播放/暂停等）			crossOrigin 		设置或返回音频/视频的 CORS 设置			currentSrc 			返回当前音频/视频的 URL			currentTime 		设置或返回音频/视频中的当前播放位置（以秒计）			defaultMuted 		设置或返回音频/视频默认是否静音			defaultPlaybackRate	设置或返回音频/视频的默认播放速度			duration 			返回当前音频/视频的长度（以秒计）			ended 				返回音频/视频的播放是否已结束			error 				返回表示音频/视频错误状态的 MediaError 对象			loop 				设置或返回音频/视频是否应在结束时重新播放			mediaGroup 			设置或返回音频/视频所属的组合（用于连接多个音频/视频元素）			muted 				设置或返回音频/视频是否静音			networkState 		返回音频/视频的当前网络状态			paused 				设置或返回音频/视频是否暂停			playbackRate 		设置或返回音频/视频播放的速度			played 				返回表示音频/视频已播放部分的 TimeRanges 对象			preload 			设置或返回音频/视频是否应该在页面加载后进行加载			readyState 			返回音频/视频当前的就绪状态			seekable 			返回表示音频/视频可寻址部分的 TimeRanges 对象			seeking 			返回用户是否正在音频/视频中进行查找			src 				设置或返回音频/视频元素的当前来源			startDate 			返回表示当前时间偏移的 Date 对象			textTracks 			返回表示可用文本轨道的 TextTrackList 对象			videoTracks 		返回表示可用视频轨道的 VideoTrackList 对象			volume 				设置或返回音频/视频的音量
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.events</td>
+					<td>Object</td>
+					<td>
+						
+						音频Dom的事件		    事件 				描述			abort 				当音频/视频的加载已放弃时			canplay 			当浏览器可以播放音频/视频时			canplaythrough 		当浏览器可在不因缓冲而停顿的情况下进行播放时			durationchange 		当音频/视频的时长已更改时			emptied 			当目前的播放列表为空时			ended 				当目前的播放列表已结束时			error 				当在音频/视频加载期间发生错误时			loadeddata 			当浏览器已加载音频/视频的当前帧时			loadedmetadata 		当浏览器已加载音频/视频的元数据时			loadstart 			当浏览器开始查找音频/视频时			pause 				当音频/视频已暂停时			play 				当音频/视频已开始或不再暂停时			playing 			当音频/视频在已因缓冲而暂停或停止后已就绪时			progress 			当浏览器正在下载音频/视频时			ratechange 			当音频/视频的播放速度已更改时			seeked 				当用户已移动/跳跃到音频/视频中的新位置时			seeking 			当用户开始移动/跳跃到音频/视频中的新位置时			stalled 			当浏览器尝试获取媒体数据，但数据不可用时			suspend 			当浏览器刻意不获取媒体数据时			timeupdate 			当目前的播放位置已更改时			volumechange 		当音量已更改时			waiting 			当视频由于需要缓冲下一帧而停止
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.fail</td>
+					<td>Object</td>
+					<td>
+						
+						不支持HTML5.Audio标签时回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.width</td>
+					<td>Object</td>
+					<td>
+						
+						音频Dom的宽度，默认150px
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.height</td>
+					<td>Object</td>
+					<td>
+						
+						音频Dom的高度，默认50px
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>hasErrorInfo</td>
+						
+						<td>
+							
+							是否有错误信息
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>clearErrorInfo</td>
+						
+						<td>
+							
+							清空错误信息
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getErrorInfo</td>
+						
+						<td>
+							
+							获取错误信息
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getDom</td>
+						
+						<td>
+							
+							获取音频Dom
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>addTextTrack</td>
+						
+						<td>
+							
+							提供向音频/视频添加新的文本轨道接口         * 	所有主流浏览器都不支持 addTextTrack() 方法。
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>kind</td>
+												<td>String</td>
+												<td>
+													
+													规定文本轨道的类型。
+												</td>
+											</tr>
+										
+									
+											
+											<tr>
+												<td>label</td>
+												<td>String</td>
+												<td>
+													
+													字符串值，为文本轨道规定标签。用于为用户对文本轨道进行标识。
+												</td>
+											</tr>
+										
+									
+											
+											<tr>
+												<td>language</td>
+												<td>String</td>
+												<td>
+													
+													双字母语言代码，规定文本轨道的语言。
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>canPlayType</td>
+						
+						<td>
+							
+							提供检测浏览器是否能播放指定的音频/视频类型接口
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>type</td>
+												<td>String</td>
+												<td>
+													
+													规定要检测的音频/视频类型。				常用值：				video/ogg				video/mp4				video/webm				audio/mpeg				audio/ogg				audio/mp4				常用值，包括编解码器：				video/ogg; codecs=&#34;theora, vorbis&#34;				video/mp4; codecs=&#34;avc1.4D401E, mp4a.40.2&#34;				video/webm; codecs=&#34;vp8.0, vorbis&#34;				audio/ogg; codecs=&#34;vorbis&#34;				audio/mp4; codecs=&#34;mp4a.40.5&#34;				注释：如果包含编解码器，则只能返回 &#34;probably&#34;。
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>load</td>
+						
+						<td>
+							
+							提供重新加载音频/视频元素接口
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>play</td>
+						
+						<td>
+							
+							提供播放接口
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>pause</td>
+						
+						<td>
+							
+							提供暂停接口
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>propertys</td>
+						
+						<td>
+							
+							设置/获取属性         *           	属性 				描述			audioTracks 		返回表示可用音轨的 AudioTrackList 对象			autoplay 			设置或返回是否在加载完成后随即播放音频/视频			buffered 			返回表示音频/视频已缓冲部分的 TimeRanges 对象			controller 			返回表示音频/视频当前媒体控制器的 MediaController 对象			controls 			设置或返回音频/视频是否显示控件（比如播放/暂停等）			crossOrigin 		设置或返回音频/视频的 CORS 设置			currentSrc 			返回当前音频/视频的 URL			currentTime 		设置或返回音频/视频中的当前播放位置（以秒计）			defaultMuted 		设置或返回音频/视频默认是否静音			defaultPlaybackRate	设置或返回音频/视频的默认播放速度			duration 			返回当前音频/视频的长度（以秒计）			ended 				返回音频/视频的播放是否已结束			error 				返回表示音频/视频错误状态的 MediaError 对象			loop 				设置或返回音频/视频是否应在结束时重新播放			mediaGroup 			设置或返回音频/视频所属的组合（用于连接多个音频/视频元素）			muted 				设置或返回音频/视频是否静音			networkState 		返回音频/视频的当前网络状态			paused 				设置或返回音频/视频是否暂停			playbackRate 		设置或返回音频/视频播放的速度			played 				返回表示音频/视频已播放部分的 TimeRanges 对象			preload 			设置或返回音频/视频是否应该在页面加载后进行加载			readyState 			返回音频/视频当前的就绪状态			seekable 			返回表示音频/视频可寻址部分的 TimeRanges 对象			seeking 			返回用户是否正在音频/视频中进行查找			src 				设置或返回音频/视频元素的当前来源			startDate 			返回表示当前时间偏移的 Date 对象			textTracks 			返回表示可用文本轨道的 TextTrackList 对象			videoTracks 		返回表示可用视频轨道的 VideoTrackList 对象			volume 				设置或返回音频/视频的音量
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>isSupportHtml5Audio</td>
+						
+						<td>
+							
+							判断是否支持HTML5的音频
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Audio</td>
+				<td>Audio的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+
+            var audio = new Audio({
+
+				&#34;container&#34;:&#34;#audioContainer&#34;
+
+				,&#34;url&#34;:&#34;http://music.baidu.com/cms/app/muplayer/test_mp3/1.mp3&#34;
+
+				,&#34;autoplay&#34;:false
+
+				,propertys:{
+
+		    		loop:&#34;loop&#34;				// 是否循环播放
+
+		    		,controls:&#34;controls&#34;	// 是否显示操作控件
+
+		    		,autoplay:&#34;autoplay&#34;	// 是否自动播放
+
+				}
+
+				,events:{
+
+					pause:function(){
+
+						console.log(&#34;音频被暂停了&#34;);
+
+					}
+
+					,play:function(){
+
+						console.log(&#34;音频被播放了&#34;);
+
+					}
+
+				}
+
+			});
+
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

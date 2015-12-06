@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Router</title>
+    <!-- 通用头 -->
+    <% include ../_g/_head.html %>
+        <style type="text/css">
+        .container{width: 1000px;overflow: hidden;margin: auto;}
+        .nav{width: 100px;float: left;border: 1px solid #f20;}
+        .nav a,.nav span{display: block;width: 100%;height: 30px;line-height: 20px;text-align: center;background: #f1f1f1;border: 5px solid white;box-sizing:border-box;cursor: pointer;}
+        .contentA{margin-left: 150px;display: flex;}
+        .contentA span{flex-grow:1;text-align: center;cursor: pointer;}
+        .contentA span:hover{background: #f8f8f8;}
+        .contentB{margin-left: 150px;height: 60px;border: 1px solid #B6B6E8;text-align: center;line-height: 60px;}
+        </style>
+</head>
+
+<body>
+    <h2>Router路由组件</h2>
+    <div class="container">
+        <section class="nav">
+            <a href="#home/123?a=1">Home</a>
+            <a href="#users">Users</a>
+            <a href="#about132">About</a>
+        </section>
+        <section class="contentA">
+            <span data-href="#section1">section1</span>
+            <span data-href="#section2">section2</span>
+            <span data-href="#section3">section3</span>
+        </section>
+        <section class="contentB" id="con1"></section>
+    </div>
+    <!-- 通用js -->
+    <% include ../_g/_script.html %>
+        <!-- 私有js -->
+        <script type="text/javascript">
+        $(function() {
+            seajs.use('router', function(Router) {
+                var router = new Router();
+
+                router.use(function(req,next){
+                    console.log('middleware',req);
+                    next();
+                })
+                router.get('/home/:number',function(req,next){
+                    setText('con1',req.path);
+                });
+                router.get('/users',function(req,next){
+                    setText('con1',req.path);
+                });
+                router.get('/about*',function(req,next){
+                    setText('con1',req.path);
+                });
+
+                router.use(function(req,next){
+                    setText('con1','未知路由');
+                });
+
+                router.start();
+
+
+            });
+
+            function setText(con,txt){
+                document.getElementById(con).innerHTML=txt;
+            }
+
+            $(document).on('click','[data-href]',function(e){
+                var href=$(this).attr('data-href');
+                console.log(href);
+                location.hash=href;
+            });
+        });
+        </script>
+        <!-- 通用尾 -->
+        <% include ../_g/_foot.html %>

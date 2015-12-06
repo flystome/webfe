@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Selector</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+<style type="text/css">
+body{padding:10px;}
+    .ro-selector-selector,.ro-selector-selector .ro-selector-content,.ro-selector-selector .ro-selector-icon{
+        height: 30px;
+        line-height: 30px;
+    }
+    .ro-selector-selector .ro-selector-content{
+        padding:0 8px;
+        overflow: hidden;
+        white-space: nowrap;
+        display: block;
+    }
+    .ro-selector-selector .ro-selector-icon{
+        top:0px;
+        right: 0px;
+        padding:0 5px;
+        font-size: 16px;
+        position: absolute;
+        z-index: 1;
+        background: #fff;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        -o-user-select:none;
+        user-select:none;
+    }
+    .ro-selector-selector .ro-selector-icon.ro-selector-down{
+        transform:rotate(180deg); 
+    }
+    .ro-selector-selector{
+        border:1px solid #ccc;
+        display: inline-block;
+        outline:none;
+        position: relative;
+    }
+    .ro-selector-selector:active,.ro-selector-selector:focus,
+    .ro-selector-selector:active .ro-selector-list,.ro-selector-selector:focus .ro-selector-list{
+        border:1px solid #0cf;
+    }
+    .ro-selector-selector,
+    .ro-selector-selector .ro-selector-list{
+        width:150px;
+    }
+    .ro-selector-selector .ro-selector-list{
+        display: none;
+        position: absolute;
+        top: 30px;
+        left:-1px;
+        border:1px solid #ccc;
+        /*padding:5px 0px;*/
+        overflow: hidden;
+        min-height: 20px;
+        background: #fff;
+    }
+    .ro-selector-selector .ro-selector-list .ro-selector-item{
+        display: block;
+        height: 24px;
+        line-height: 24px;
+        padding:0 8px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        cursor: pointer;
+    }
+    .ro-selector-selector .ro-selector-list .ro-selector-item.hover,
+    .ro-selector-selector .ro-selector-list .ro-selector-item.ro-selector-on{
+        background: #ccc;
+    }
+
+    .initSelect{display:inline-block;margin:0 5px;}
+</style>
+</head>
+<body>
+	<h2>Selector</h2>
+
+<!--
+	<select id="sltYear"></select>
+	<select id="sltMonth"></select>
+	<select id="sltDate"><option>请选择日</option></select>
+-->
+    
+    <div id="sltYear" class="initSelect"></div>
+    <div id="sltMonth" class="initSelect">
+        <div class="ro-selector-selector" tabindex="-1">
+            <span class="ro-selector-content">eeeeeee例eeeeeee例eeeeeee例eeeeeee例eeeeeee例eeeeeee例</span>
+            <input type="hidden" name="year" change="log(this.value)">
+            <span class="ro-selector-icon">▾</span>
+            <div class="ro-selector-list">
+                <span class="ro-selector-item ro-selector-on">eeeeeee例eeeeeee例eeeeeee例eeeeeee例eeeeeee例eeeeeee例</span>
+                <span class="ro-selector-item" data-value="1">sdfdklfkdjfkd</span>
+            </div>
+        </div>
+    </div>
+    <div id="sltDate" class="initSelect">
+        <div class="ro-selector-selector" tabindex="-1">
+            <span class="ro-selector-content">eeeeeee例eeeeeee例eeeeeee例eeeeeee例eeeeeee例eeeeeee例</span>
+            <input type="hidden" name="year" data-value="1" change="log(this.value)">
+            <span class="ro-selector-icon">▾</span>
+            <div class="ro-selector-list">
+                <span class="ro-selector-item" data-value="2">eeeeeee例eeeeeee例eeeeeee例eeeeeee例eeeeeee例eeeeeee例</span>
+                <span class="ro-selector-item" data-value="1">sdfdklfkdjfkd</span>
+            </div>
+        </div>
+    </div>
+
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+
+    /** 扩展Jquery的val方法
+     *
+     *  @author ywchen(陈余文)
+     *  @date 2015.05.19
+     *  @roobject $
+     *  @static
+     *  @roname $.fn.value
+     *  @return 获取或设置值
+     *  @example
+            $(dom).value();
+     */
+    $.fn.value = function(str){
+        
+        var element = this
+          , v = null
+          , t = null
+        
+        // 设置值
+        if(str != null){
+            element.val(str);
+            element.trigger("contentChange");
+            return this;
+        }
+        
+        // 以下是获取值
+        v = $.trim(element.val());
+        t = $.trim(element.attr("data-title"));
+        
+        // 当文本的内容是提示信息时，获取的值不空字符串
+        if(v == "" || v == t){
+            return "";
+        }else{
+            return v;
+        }
+    };
+
+	$(function(){
+
+		// 例1
+		seajs.use('selector', function(Selector){
+            var yearObj = new Selector({
+                "container":"#sltYear"
+            	,"child":"#sltDate"
+                ,isFirstLoad:true
+            	,"defText":"请选择年"
+                ,"getParam":function(cid){
+                    return [2000, 2001, 2002, 2003, 2004];
+                }
+                ,"getContent":function(item,index){
+                	return {
+                		"value":item
+                		,"text":item + "年"
+                	}
+                }
+                ,"callback":function(element){
+                    log("sltYear.callback:：",this.getValue("#sltYear"))
+                }
+                ,propertys:{
+                    "ro-validate":"require"
+                    ,"ro-require":"年不能为空！"
+                }
+                ,selCallback:function(){
+                    log("sltYear.selCallback:",arguments,this);
+                    //this.remove()
+                }
+            });
+            var monthObj = new Selector({
+                "container":"#sltMonth"
+            	,"child":"#sltDate"
+                ,isFirstLoad:true
+            	,"defText":"请选择月"
+                ,"getParam":function(cid){
+                    return [1,2,3,4,5,6,7,8,9,10,11,12];
+                }
+                ,"getContent":function(item,index){
+                	return {
+                		"value":item
+                		,"text":item + "月"
+                	}
+                }
+                ,"callback":function(element){
+                    //log("sltMonth.callback:：",this.getValue("#sltMonth"))
+                }
+                ,selCallback:function(){
+                    log("sltMonth.selCallback:",arguments);
+                    //yearObj.setNotDownList(false)
+                }
+                ,changeCallback:function(){
+                    log("sltMonth.changeCallback:",arguments);
+                }
+            });
+
+            new Selector({
+                "container":"#sltDate"
+            	,"defText":"请选择日"
+                ,isFirstLoad:true
+                ,"getParam":function(cid){
+                    //return [1,2,3,4,5,6,7,8,9,10];
+                }
+                ,"getContent":function(item,index){
+                	return {
+                		"value":item.id
+                		,"text":item.name + "日"
+                	}
+                }
+                ,getData:function(){
+                    var selection = this;
+
+                    if(yearObj.getValue("#sltYear") == "" || monthObj.getValue("#sltMonth")  == ""){
+                        selection.setData([]);
+                        return ;
+                    }
+                    // AJAX请求加回调
+                    search(function(data){
+                        selection.setData(data);
+                    }, yearObj.getValue("#sltYear"), monthObj.getValue("#sltMonth"));
+                }
+                ,"callback":function(element){
+                    //log("sltDate.callback:：",this.getValue("#sltDate"))
+                    //if($(this).get(0).options.length > 1)
+                    this.autoSelect(element,2);
+                }
+                ,selCallback:function(){
+                    //yearObj.setNotDownList(true)
+                    log("sltDate.selCallback:",arguments);
+                }
+            });
+		});
+
+        function search(cb,year,month){
+            setTimeout(function(){
+                function isLeapYear(year){
+                    if((year % 4 == 0 && year % 100 != 0) || year%400==0)
+                    //if((year % 4 == 0 && year % 100 != 0) || (year%100==0 && year%400==0))
+                        return true;
+                    else
+                        return false;
+                }
+                month = parseInt(month);
+                var leap = [31,29,31,30,31,30,31,31,30,31,30,31];
+                var nonleap = [31,28,31,30,31,30,31,31,30,31,30,31];
+                var months = isLeapYear(year) ? leap : nonleap;
+                var days = [];
+                for(var i = 1; i <= months[month - 1]; i++){
+                    days.push({
+                        id:i
+                        ,name:i
+                    });
+                }
+                cb(days);
+            },3000);
+        }
+	});
+	</script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

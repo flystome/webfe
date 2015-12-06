@@ -1,0 +1,67 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>tips.js</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+            width: 900px;
+            margin: 30px 0 30px 360px;
+        }
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        </style>
+    </head>
+<body>	<div class="ro_doc">		<h1>tips.js</h1>		<p>tips.js</p>		<h2>最佳实践</h2>		<pre>			<code class="css">@media screen and (-webkit-min-device-pixel-ratio: 0) {    body:first-of-type pre::after {    content: 'highlight: ' attr(class);  }  body {    background: linear-gradient(45deg, blue, red);  }}			</code>		</pre>		<pre>			<code class="js">var dialog = new Dialog({	title: '提示',	content: '确定将修改的数据发布到手机端?',	width: 200,	closeFun: function() {    }})			</code>		</pre>		<pre>			<code class="xml"></code>			<textarea>	        	<div>		        	<div>11111</div>		        	<div>11111</div>		        	<div>11111</div>	        	</div>	      	</textarea>		</pre>				<h2>配置说明</h2>		<h3>title string</h3>		<p>对话框标题。默认为提示。</p>		<h3>content string</h3>		<p>对话框内容。默认为空</p>		<h3>width number</h3>		<p>设置对话框的宽度。默认为200</p>		<h3>hasMask boolean</h3>		<p>是否有背景遮罩层。默认为 true。</p>		<h2>基本演示</h2>			</div>		<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

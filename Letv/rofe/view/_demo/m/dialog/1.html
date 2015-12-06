@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>dialog</title>
+<!-- 通用头 -->
+<% include ../_g/_head.html %>
+
+</head>
+<body>
+	<h2>Dialog</h2>
+	<p>这里演示一下 Dialog 下的模块的使用。</p>
+	<button>弹出对话框</button>
+
+
+<!--
+	<div class="ui-mask"></div>
+	<div class="ui-dialog">
+		<div class="ui-dialog-container">
+			<div class="ui-dialog-head">
+				<span>关闭</span>
+				<h2>标题</h2>
+			</div>
+			<div class="ui-dialog-content">
+				<p>您打开了一个对话框！</p>
+			</div>
+			<div class="ui-dialog-footer">
+				<input class="ui-button ui-button-default" type="button" value="确定">
+				<input class="ui-button ui-button-default" type="button" value="取消">
+			</div>
+		</div>
+	</div>
+-->
+
+	<!-- 通用js -->
+	<% include ../_g/_script.html %>
+
+	<!-- 私有js -->
+	<script type="text/javascript">
+	$(function(){
+		$("button").click(function(){
+
+			// 例1
+			seajs.use('dialog', function(Dialog){
+				var html = '<div class="ui-dialog-head">\
+						<span onclick="ROCK.core.BaseClass.get({guid}).uclose()">关闭</span>\
+						<h2>标题</h2>\
+					</div>\
+					<div class="ui-dialog-content">\
+						<p>您打开了一个对话框！</p>\
+					</div>\
+					<div class="ui-dialog-footer">\
+						<input class="ui-button ui-button-highlight" type="button" value="确定" data-op="confirm">\
+						<input class="ui-button ui-button-disabled" type="button" value="取消" data-op="cancel" onclick="ROCK.core.BaseClass.get({guid}).uclose()">\
+					</div>'
+				new Dialog({
+					content:html
+					//,isStop:true
+					//,timer:1200
+					,init:function(){						// 组件初始化回调
+						console.log("init");
+						var me = this;
+						this.getDialogDom().find(".ui-button-highlight").click(function(){
+							me.confirm();
+						});
+					}
+					,confirm:function(){				   // 执行确定操作
+						console.log("confirm");
+						// 程序关闭
+						this.close();
+						return false;
+					}
+					,cancel:function(isUserClose){			// 执行取消操作
+						console.log("cancel",isUserClose);
+						this._remove();
+					}
+					/* 不提供该方法了
+					,ucancel:function(){
+						console.log("ucancel");
+					}
+					*/
+					,beforeOpen:function(){					// 对话框显示前回调
+						console.log("beforeOpen",this.isShow);
+					}
+					,afterOpen:function(){					// 对话框显示后回调
+						console.log("afterOpen",this.isShow);
+					}
+					,beforeClose:function(){				// 对话框显示关闭前回调
+						console.log("beforeClose");
+					}
+					,afterClose:function(){					// 对话框显示关闭后回调
+						console.log("afterClose",this);
+					}
+				}).open();
+			});
+		});
+	});
+
+	</script>
+
+
+<!-- 通用尾 -->
+<% include ../_g/_foot.html %>

@@ -1,0 +1,1105 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Calendar</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Calendar</h1>
+		<p>描述 : 日期组件     *  this.opt.date和this.opt.input里的时间，优先显示this.opt.input里的时间；</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://localhost:9000/_demo/m/calendar/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opts</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>opts.container</td>
+					<td>Number</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						日期容器
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.input</td>
+					<td>Number</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						获取被选中日期的Dom
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.weekOffset</td>
+					<td>Number</td>
+					<td>
+						
+						星期日的列排列顺序，传值被限制在-6到0之间，含0和-6；0时，在第一列，-1是在第二列，-2是在第三列，以此类推;当值大于0时按0算，当值小于-6时按-6计算,默认值0
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.date</td>
+					<td>Number</td>
+					<td>
+						
+						初始化的日期
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.titleFormat</td>
+					<td>Number</td>
+					<td>
+						
+						不可以带时分秒，默认值yyyy-MM-dd
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.format</td>
+					<td>Number</td>
+					<td>
+						
+						日期输出格式代，默认值yyyy-MM-dd
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.cellTpl</td>
+					<td>Number</td>
+					<td>
+						
+						时间格子的模板，默认值是&#39;&lt;span class=&#34;{className}&#34; title=&#34;{title}&#34; data-value=&#34;{dateStr}&#34;&gt;{date}&lt;/span&gt;&#39;，其中{title}为按format格式的数据，{date}为单纯的日，{className}为相应的样式，{dateStr}是标准的输出格式yyyy/MM/dd hh:mm:ss
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.cssClearFloat</td>
+					<td>Number</td>
+					<td>
+						
+						清除浮动样式，默认值clearx
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.cssAllClass</td>
+					<td>Number</td>
+					<td>
+						
+						每个格式都有的样式，默认值ro_date_cell
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.unCurMonth</td>
+					<td>Number</td>
+					<td>
+						
+						非当前月的日期的格子样式，默认值ro_date_hui
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.headCell</td>
+					<td>Number</td>
+					<td>
+						
+						星期的头部格子样式，默认值ro_date_head
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.footCell</td>
+					<td>Number</td>
+					<td>
+						
+						尾部的格子样式，默认值ro_date_foot
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.cssEnter</td>
+					<td>Number</td>
+					<td>
+						
+						最后一个格子的样式，默认值ro_date_enter
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.htmlEnter</td>
+					<td>Number</td>
+					<td>
+						
+						最后一个格子后插入的Dom，默认值&lt;br class=&#34;ro_date_br&#34;&gt;
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.cssLine</td>
+					<td>Number</td>
+					<td>
+						
+						将格子变成一整行的样式，默认值ro_date_line
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.cssDisabled</td>
+					<td>Number</td>
+					<td>
+						
+						不在可选中区间的日期格子样式，默认值ro_date_disabled
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.cssSelect</td>
+					<td>Number</td>
+					<td>
+						
+						日期格子被选中时的样式，默认值ro_date_select
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.max</td>
+					<td>Number</td>
+					<td>
+						
+						最大输出的格子个数,暂时只支持42;默认值42
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.callback</td>
+					<td>Number</td>
+					<td>
+						
+						选中是的回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.hasHour</td>
+					<td>Number</td>
+					<td>
+						
+						是否显示小时
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.hasMinutes</td>
+					<td>Number</td>
+					<td>
+						
+						是否显示分钟
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.hasSeconds</td>
+					<td>Number</td>
+					<td>
+						
+						是否显示秒
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.fromDate</td>
+					<td>Number</td>
+					<td>
+						
+						日期可激活区间，开始区间
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.toDate</td>
+					<td>Number</td>
+					<td>
+						
+						日期可激活区间，结束区间
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.unAreaFail</td>
+					<td>Number</td>
+					<td>
+						
+						当前要选中的时间不在可选区间中
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.unSelectDateFail</td>
+					<td>Number</td>
+					<td>
+						
+						日期还未选中，不能直接修改时分秒
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.show</td>
+					<td>Number</td>
+					<td>
+						
+						时间控件容器被显示回调
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opts.hide</td>
+					<td>Number</td>
+					<td>
+						
+						时间控件容器被隐藏回调
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>init</td>
+						
+						<td>
+							
+							组件初始化入口，初始化指定的年月的当月日期；没有指定时以参数this.opt.date为准；当this.opt.date没有时以当前日期为准
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>year</td>
+												<td>Number</td>
+												<td>
+													
+													初始化日期的年,可不值就是今天的年月
+												</td>
+											</tr>
+										
+									
+											
+											<tr>
+												<td>month</td>
+												<td>Number</td>
+												<td>
+													
+													初始化日期的月,可不值就是今天的年月
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>show</td>
+						
+						<td>
+							
+							日期组件显示
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>hide</td>
+						
+						<td>
+							
+							日期组件隐藏
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getInputValue</td>
+						
+						<td>
+							
+							获取日期输入框Dom的值
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>setInputValue</td>
+						
+						<td>
+							
+							设置日期输入框Dom的值
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>value</td>
+												<td>String</td>
+												<td>
+													
+													日期格式
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getDateDom</td>
+						
+						<td>
+							
+							获取指定日期的格子Dom
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>dateStr</td>
+												<td>String</td>
+												<td>
+													
+													日期格式
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>format</td>
+						
+						<td>
+							
+							日期格式化函数
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>date</td>
+												<td>String|Number|Date</td>
+												<td>
+													
+													日期,可日期格式的字符串、可毫秒的数值1433835125037、可时间对象
+												</td>
+											</tr>
+										
+									
+											
+											<tr>
+												<td>format</td>
+												<td>String</td>
+												<td>
+													
+													格式化格式
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getObjectCalendar</td>
+						
+						<td>
+							
+							不管日期是字符的还是对象的，最终能返回一个对象的日期，返回的时间可能是NULL
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>date</td>
+												<td>String|Number|Date</td>
+												<td>
+													
+													日期,可日期格式的字符串、可毫秒的数值1433835125037、可时间对象
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getObjectDate</td>
+						
+						<td>
+							
+							不管日期是字符的还是对象的，最终能返回一个对象的日期，肯定能返回一个时间
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>date</td>
+												<td>String|Number|Date</td>
+												<td>
+													
+													日期,可日期格式的字符串、可毫秒的数值1433835125037、可时间对象
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>renderMonth</td>
+						
+						<td>
+							
+							渲染组件的主函数模板
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>year</td>
+												<td>Number</td>
+												<td>
+													
+													初始化日期的年
+												</td>
+											</tr>
+										
+									
+											
+											<tr>
+												<td>month</td>
+												<td>Number</td>
+												<td>
+													
+													初始化日期的月
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>goReload</td>
+						
+						<td>
+							
+							调用关联的此Calendar实例的另外Calendar实例重载
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>date</td>
+												<td>String|Number|Date</td>
+												<td>
+													
+													日期,可日期格式的字符串、可毫秒的数值1433835125037、可时间对象
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>reload</td>
+						
+						<td>
+							
+							当本身有日期选中的时候，要修改关联的对象的可选中状态
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>opt</td>
+												<td>Object</td>
+												<td>
+													 <b style="color:red">[必填]</b>
+													参数
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>setMinDate</td>
+						
+						<td>
+							
+							设置最小时间的对象
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>arg_calendar</td>
+												<td>Calendar</td>
+												<td>
+													
+													关联的Calendar对象的实例
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>setMaxDate</td>
+						
+						<td>
+							
+							设置最大时间的对象
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>arg_calendar</td>
+												<td>Calendar</td>
+												<td>
+													
+													关联的Calendar对象的实例
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>prevMonth</td>
+						
+						<td>
+							
+							初始化上个月显示
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>nextMonth</td>
+						
+						<td>
+							
+							初始化下个月显示
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>prevYear</td>
+						
+						<td>
+							
+							初始化上个年显示
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>nextYear</td>
+						
+						<td>
+							
+							初始化下个年显示
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Calendar</td>
+				<td>Calendar的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+
+
+
+            calendar1 = new Calendar({
+
+                container:&#34;.J_list1&#34;
+
+                ,input:&#34;#txtInput1&#34;
+
+                ,titleFormat:&#34;yyyy年MM月dd日&#34;
+
+                ,format:&#34;yyyy-MM-dd hh:mm:ss&#34;
+
+                ,callback:function(dateStr,dom){
+
+                    //this.hide();
+
+                    //log(arguments)
+
+                }
+
+                ,hasHour:true
+
+                ,hasMinutes:true
+
+                ,hasSeconds:true
+
+
+
+                ,date:&#34;2015/05/01&#34;
+
+                ,fromDate:&#34;2015/04/01&#34;
+
+                ,toDate:&#34;2015/06/23&#34;
+
+
+
+
+
+            });
+
+
+
+            calendar2 = new Calendar({
+
+                container:&#34;.J_list2&#34;
+
+                ,input:&#34;#txtInput2&#34;
+
+                ,titleFormat:&#34;yyyy年MM月dd日&#34;
+
+                ,format:&#34;yyyy-MM-dd&#34;
+
+                ,callback:function(dateStr,dom){
+
+                    //$(&#34;#txtInput&#34;).val(dateStr);
+
+                    log(arguments)
+
+                }
+
+                ,hasHour:false
+
+                ,hasMinutes:false
+
+                ,hasSeconds:false
+
+
+
+                //,date:&#34;2015/05/01&#34;
+
+                //,fromDate:&#34;2015/04/01&#34;
+
+                //,toDate:&#34;2015/05/23&#34;
+
+
+
+
+
+            });
+
+
+
+            calendar1.setMaxDate(calendar2);
+
+            calendar2.setMinDate(calendar1);
+
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,663 @@
+<DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Page</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/solarized_dark.min.css">
+        <style type="text/css">
+        .hljs {
+            background-color: #f8f8f9;
+        }
+        
+        body {
+            line-height: 1.5;
+            font-family: "Marmelad", "Lucida Grande", Georgia, sans-serif;
+        }
+        
+        .ro_doc {
+           
+            
+        }
+        .trparent{background: #e7e7e7}
+        
+        .ro_doc h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #6c97c2;
+        }
+        
+        .ro_doc h2 {
+            font-size: 22px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            margin: 40px 0 20px;
+        }
+        
+        .ro_doc h3 {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .ro_doc p {
+            font-size: 14px;
+            margin: 16px 0;
+            color: #666;
+        }
+        
+        textarea {
+            display: none
+        }
+        .ui-table {
+          width: 100%;
+          text-align: left;
+          border-collapse:collapse;
+        }
+        .ui-table th {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          background-color: #d9d9d9;
+          color: #666;
+        }
+        .ui-table td {
+          padding: 10px;
+          border: 1px solid #cccccc;
+          color: #808080;
+          padding-left: 20px
+        }
+        .ui-table-split {
+          background-color: #fbfbfb;
+        }
+        .ui-table .trparent td{
+            padding-left: 10px
+        }
+
+        </style>
+    </head>
+
+    <div></div>
+<div></div>
+<div></div>
+
+<body>
+
+	<div class="ro_doc">
+		<h1>Page</h1>
+		<p>描述 : 翻页组件，模板中的{href}这种形式的都是变量；替换模板时应尽量保留以保证功能完整性</p>
+		<p>作者 : ywchen(陈余文)</p>
+		
+		<p><a href="http://localhost:9000/_demo/m/page/1" target="_blank">demo</a></p>
+		
+		<h2>类说明</h2>
+		<h3>类参数</h3>
+		<table class="ui-table">
+			<tr>
+				<th>参数名称</th>
+				<th>参数类型</th>
+				<th>说明</th>
+			</tr>
+		
+			<tr class="trparent">
+				<td>opt</td>
+				<td>Object</td>
+				<td>参数</td>
+			</tr>
+			
+				<tr>
+					<td>opt.container</td>
+					<td>HTMLElement</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						组件容器
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.length</td>
+					<td>Number</td>
+					<td>
+						 <b style="color:red">[必填]</b>
+						总记录数，默认0条
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.curPage</td>
+					<td>Number</td>
+					<td>
+						
+						当前页码,默认第一页
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.count</td>
+					<td>Number</td>
+					<td>
+						
+						每页的条数,可选参数，默认为10
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.size</td>
+					<td>Number</td>
+					<td>
+						
+						每屏的页码数,可选参数，默认为10
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.hasFirstAndEndTag</td>
+					<td>Boolean</td>
+					<td>
+						
+						是否有首页和末页标签，默认true,显示
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.hasPreAndNextTag</td>
+					<td>Boolean</td>
+					<td>
+						
+						是否有上一页和下一页标签，默认true,显示
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.hasJumpTag</td>
+					<td>Boolean</td>
+					<td>
+						
+						是否有跳转到标签，默认true,显示
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.jumpTpl</td>
+					<td>String</td>
+					<td>
+						
+						跳转到的模板，输入框必须带J_roPageInput样式名；按钮必须带J_roPageButton样式名；跳转到的模板；默认为‘&lt;input class=&#34;ui-text J_roPageInput&#34; type=&#34;text&#34; placeholder=&#34;页码&#34;&gt;&lt;span class=&#34;ui-button J_roPageButton&#34;&gt;跳转&lt;/span&gt;’
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.linkTpl</td>
+					<td>String</td>
+					<td>
+						
+						页码的模板，默认为&#39;&lt;a title=&#34;{text}&#34; href=&#34;{href}&#34; class=&#34;{linkClass} J_roPageLink&#34; data-ro-page={page}&gt;{text}&lt;/a&gt;&#39;
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.btnTpl</td>
+					<td>String</td>
+					<td>
+						
+						首页、末页、上页、下页按钮的模板,默认&#39;&lt;a title=&#34;{text}&#34; href=&#34;{href}&#34; class=&#34;{linkClass} J_roPageLink&#34; data-ro-page={page}&gt;{text}&lt;/a&gt;&#39;
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.parentTpl</td>
+					<td>String</td>
+					<td>
+						
+						父节点的容器模板,格式如‘&lt;div&gt;{html}&lt;/div&gt;’；默认空
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.firstText</td>
+					<td>String</td>
+					<td>
+						
+						首页按钮的文本，默认”首页“
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.endText</td>
+					<td>String</td>
+					<td>
+						
+						末页按钮的文本，默认”末页“
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.preText</td>
+					<td>String</td>
+					<td>
+						
+						上一页按钮的文本，默认”上一页“
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.nextText</td>
+					<td>String</td>
+					<td>
+						
+						下一页按钮的文本，默认”下一页“
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.linkHref</td>
+					<td>String</td>
+					<td>
+						
+						模板中变量参数为{href}的值
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.midText</td>
+					<td>String</td>
+					<td>
+						
+						”页码“标签的文本内容，默认{page}
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.commonClass</td>
+					<td>String</td>
+					<td>
+						
+						”首页“、”末页“、”上一页“、”下一页“以及页数标签的能用样式
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.curClass</td>
+					<td>String</td>
+					<td>
+						
+						选中的样式，默认cur
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.preClass</td>
+					<td>String</td>
+					<td>
+						
+						”上一页“的样式，无默认
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.nextClass</td>
+					<td>String</td>
+					<td>
+						
+						”上一页“的样式，无默认
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.firstClass</td>
+					<td>String</td>
+					<td>
+						
+						”首页“的样式，无默认
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.endClass</td>
+					<td>String</td>
+					<td>
+						
+						”末页“的样式，无默认
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.btnDisableClass</td>
+					<td>String</td>
+					<td>
+						
+						”首页“、”末页“、”上一页“、”下一页“的不可用状态样式；当存在值时，当前是第一页也会出现”首页“等
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.maxPage</td>
+					<td>Number</td>
+					<td>
+						
+						最大页码,可选参数，默认为0,不限制
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.jumpParamError</td>
+					<td>function</td>
+					<td>
+						
+						当输入的内容不符合时被回调，该函数返回值是true,继续跳转；若为false不跳转；函数参数，第一个是当前页，第二个是最大页
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.beforeJump</td>
+					<td>function</td>
+					<td>
+						
+						当页码跳转前被回调，该函数返回值是true,继续跳转；若为false不跳转；函数参数，第一个是当前页，第二个是最大页
+
+						
+
+					</td>
+				</tr>
+			
+				<tr>
+					<td>opt.rendered</td>
+					<td>function</td>
+					<td>
+						
+						当页码跳转后且渲染完后被回调，该函数返回值是true,继续跳转；若为false不跳转；函数参数，第一个是当前页，第二个是最大页
+
+						
+
+					</td>
+				</tr>
+			
+		
+		</table>
+		
+			<h3>类属性方法</h3>
+			<table class="ui-table">
+				<tr>
+					<th>方法名称</th>
+					
+					<th>说明</th>
+					<th>参数</th>
+				</tr>
+				
+					<tr>
+						<td>getContainer</td>
+						
+						<td>
+							
+							获取组件的容器
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getPage</td>
+						
+						<td>
+							
+							获取上次渲染时的页码
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>goToPage</td>
+						
+						<td>
+							
+							跳转到指定的页码
+						</td>
+						<td>
+
+							
+								<table class="ui-table">
+									<tr>
+										<th>参数名称</th>
+										<th>参数类型</th>
+										<th>说明</th>
+									</tr>
+									
+											
+											<tr>
+												<td>curPage</td>
+												<td>Number</td>
+												<td>
+													
+													被跳转到的页码, 当参数不合理时还是会跳转；比如大于最大页码时按最大页码跳转
+												</td>
+											</tr>
+										
+									
+								</table>
+							
+							
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getFirstDom</td>
+						
+						<td>
+							
+							获取”首页“的Dom
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getEndDom</td>
+						
+						<td>
+							
+							获取”末页“的Dom
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getPreDom</td>
+						
+						<td>
+							
+							获取”上一页“的Dom
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+					<tr>
+						<td>getNextDom</td>
+						
+						<td>
+							
+							获取”下一页“的Dom
+						</td>
+						<td>
+
+							
+							 无
+						</td>
+					</tr>
+					
+				
+			</table>
+		
+		
+
+		<h3>返回值</h3>
+		<table class="ui-table">
+			<tr>
+				<th>类型</th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>Page</td>
+				<td>opt.返回Page的实例</td>
+			</tr>
+		</table>
+		<h3>示例</h3>
+		
+		<pre>
+			<code class="js">
+
+            new Page({
+                &#34;container&#34;:&#34;.J_page1&#34;
+                ,&#34;curPage&#34;:3
+                ,&#34;length&#34;:data.length || 41
+                ,&#34;count&#34;:count || 10
+                ,&#34;size&#34;:size || 8
+                ,&#34;commonClass&#34;:&#34;common ui-button&#34;
+                ,&#34;firstClass&#34;:&#34;first&#34;
+                ,&#34;preClass&#34;:&#34;pre&#34;
+                ,&#34;nextClass&#34;:&#34;next&#34;
+                ,&#34;endClass&#34;:&#34;end&#34;
+                ,&#34;curClass&#34;:&#34;cur&#34;
+                ,midText:&#39;{page}/{end}&#39;
+                ,preText:&#34;上&#34;
+                ,nextText:&#34;下&#34;
+                ,firstText:&#34;首&#34;
+                ,endText:&#34;末&#34;
+                ,btnDisableClass:&#34;disable&#34;
+                // ,hasFirstAndEndTag:false    // 是否有首页和末页
+                // ,hasPreAndNextTag:false     // 是否有上一页和下一页
+                // ,hasJumpTag:false
+                ,beforeJump:function(curPage, end){
+                    
+                }
+                ,beforeJump:function(curPage, end){
+                    
+                }
+                ,rendered:function(curPage, end){
+                    
+                }
+            });
+
+			</code>
+		</pre>
+	</div>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('textarea').parent().find('code').html($('textarea').html());
+	hljs.initHighlightingOnLoad();
+});
+
+</script>
+</body>
+
+</html>

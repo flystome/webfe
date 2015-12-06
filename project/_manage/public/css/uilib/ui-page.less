@@ -1,0 +1,60 @@
+.ui-page {
+  text-align: right;
+  line-height: 27px;
+  color: #999;
+  box-sizing: border-box;
+  margin-top: 20px;
+  padding: 10px 5px;
+  background-color: #fff;
+  // border: 1px solid #DDD;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+  &:empty {
+    padding: 0;
+  }
+  a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    &:focus, &:active, &:hover {
+      outline: none;
+      transition: all 0.3s;
+      color: #FFF;
+      background: #65CEA7;
+      border-color: #65CEA7;
+    }
+  }
+  input {
+    width: 85px;
+    height: 25px;
+    line-height: 25px;
+    border: 1px solid #ddd;
+    text-align: center;
+    margin: 0 15px;
+  }
+  .dis {
+    background-color: #ccc !important;
+    border-color: #ccc !important;
+    color: #666 !important;
+  }
+  .prev {}
+  .next {}
+  .skip {
+    cursor: pointer;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    border: 1px solid #DCDCDC;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    &:hover {
+      outline: none;
+      transition: all 0.3s;
+      color: #FFF;
+      background: #65CEA7;
+      border-color: #65CEA7;
+    }
+  }
+}

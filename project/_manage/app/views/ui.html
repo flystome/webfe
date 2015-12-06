@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>RO-UI</title>
+    <!-- 通用头 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="name" content="<%= data['username'] %>">
+    <meta name="admin" content="<%= data['admin'] %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/css/playground.css">
+    <style>
+    body {
+        background-color: #f7f8f9;
+    }
+
+    .container {
+        margin: 20px;
+    }
+
+    .forms form {
+        width: 800px;
+        margin: auto;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container buttons ui-panel">
+        <div class="ui-panel-hd">按钮</div>
+        <div class="ui-panel-bd">
+            <a tabindex="1" href="#" class="ui-btn ui-btn-success">成功按钮</a>
+            <a tabindex="1" href="#" class="ui-btn ui-btn-info">信息按钮</a>
+            <a tabindex="1" href="#" class="ui-btn ui-btn-danger">危险按钮</a>
+            <a tabindex="1" href="#" class="ui-btn ui-btn-lg">大按钮</a>
+            <a tabindex="1" href="#" class="ui-btn ui-btn-success ui-btn-loading">大按钮</a>
+            <button href="#" class="ui-btn">默认按钮</button>
+            <a tabindex="1" href="#" class="ui-btn ui-btn-sm">小按钮</a>
+            <a tabindex="1" href="#" class="ui-btn ui-btn-xs">超小按钮</a>
+            <a tabindex="1" href="#" class="ui-btn active">active</a>
+            <a tabindex="1" href="#" class="ui-btn hover">hover</a>
+            <button class="ui-btn focus">focus</button>
+            <a tabindex="1" href="#" class="ui-btn disabled">disabled</a>
+            <button href="#" class="ui-btn disabled">disabled</button>
+        </div>
+    </div>
+    <div class="container tables ui-panel">
+        <div class="ui-panel-hd">表格</div>
+        <div class="ui-panel-bd">
+            <h3>基本表格</h3>
+            <table class="ui-table ui-table-head-dark">
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </table>
+            <h3>条纹表格</h3>
+            <table class="ui-table ui-table-split ui-table-head">
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </table>
+            <h3>边框表格</h3>
+            <table class="ui-table ui-table-bordered">
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </table>
+            <h3>悬停表格</h3>
+            <table class="ui-table ui-table-hover">
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="container forms ui-panel">
+        <div class="ui-panel-hd">表单</div>
+        <div class="ui-panel-bd">
+            <h3>水平表单</h3>
+            <form class="ui-form">
+                <div class="ui-form-item">
+                    <label class="ui-form-label">表单项文本</label>
+                    <div class="ui-form-box">
+                        <p class="ui-form-text">文本内容</p>
+                    </div>
+                    <div class="ui-form-ext"></div>
+                </div>
+                <div class="ui-form-item">
+                    <label class="ui-form-label">
+                        <span class="ui-form-required">*</span>表单项文本
+                    </label>
+                    <div class="ui-form-box">
+                        <input class="ui-form-control" type="text">
+                    </div>
+                    <div class="ui-form-ext">
+                        <span class="ui-tiptext ui-tiptext-error">此处为必填</span>
+                    </div>
+                </div>
+                <div class="ui-form-item">
+                    <label class="ui-form-label">
+                        <span class="ui-form-required">*</span>表单项文本
+                    </label>
+                    <div class="ui-form-box">
+                        <textarea class="ui-form-control" rows="5"></textarea>
+                    </div>
+                    <div class="ui-form-ext">
+                        <span class="ui-tiptext ui-tiptext-error">此处为必填</span>
+                    </div>
+                </div>
+                <div class="ui-form-item">
+                    <label class="ui-form-label">
+                        <span class="ui-form-required">*</span>表单项文本
+                    </label>
+                    <div class="ui-form-box">
+                        <div class="ui-form-checkbox">
+                            <label>
+                                <input type="checkbox" /> checkbox
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-form-item">
+                    <label class="ui-form-label">下拉选择</label>
+                    <div class="ui-form-box">
+                        <select class="ui-form-control">
+                            <option>请选择</option>
+                            <option>选项一</option>
+                            <option>选项二</option>
+                        </select>
+                    </div>
+                    <div class="ui-form-ext"></div>
+                </div>
+                <div class="ui-form-item">
+                    <label class="ui-form-label"></label>
+                    <div class="ui-form-box">
+                        <button class="ui-btn ui-btn-success">确定</button>
+                        <input class="ui-btn" type="button" value="取消">
+                    </div>
+                </div>
+            </form>
+            <h3>内联表单</h3>
+            <form class="ui-form-inline">
+                <div class="ui-form-item">
+                    <label>UserName</label>
+                    <input type="text" class="ui-form-control" placeholder="Jhon"/>
+                    <label>PassWord</label>
+                    <input type="password" class="ui-form-control" placeholder="password"/>
+                </div>
+                <button class="ui-btn">提交</button>
+            </form>
+        </div>
+    </div>
+    <div class="container pages ui-panel">
+        <div class="ui-panel-hd">分页</div>
+        <div class="ui-panel-bd">
+            <div class="ui-page">
+                <a title="←上一页" href="javascript:void(0);" class="prev dis">←上一页</a>
+                <a title="1" href="javascript:void(0);" class="">1</a>
+                <a title="2" href="javascript:void(0);" class="cur">2</a>
+                <a title="3" href="javascript:void(0);" class="">3</a>
+                <a title="下一页→" href="javascript:void(0);" class="prev">下一页→</a>
+                <input class="J_roPageInput" type="text" placeholder="页码">
+                <span class="skip J_roPageButton">跳转</span>
+            </div>
+        </div>
+    </div>
+    <div class="container tips ui-panel">
+        <div class="ui-panel-hd">提示</div>
+        <div class="ui-panel-bd">
+
+        </div>
+    </div>
+</body>
+
+</html>

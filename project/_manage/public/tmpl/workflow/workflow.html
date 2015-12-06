@@ -1,0 +1,31 @@
+{{?it.frame}}
+<div class="container buttons ui-panel">
+    <div class="ui-panel-hd">项目开发管理</div>
+    <div class="ui-panel-bd">
+        <a tabindex="1" href="#" data-op="view" class="ui-btn">查看</a>
+        <a tabindex="1" href="#" data-op="newProject" class="ui-btn">新建</a>
+        <ul>
+            <li>新建omp项目</li>
+            <li>新建le项目</li>
+        </ul>
+        <a tabindex="1" href="#" data-op="bundle" class="ui-btn">打包</a>
+        <a tabindex="1" href="#" data-op="test" class="ui-btn">提测</a>
+        <a tabindex="1" href="#" data-op="online" class="ui-btn">上线</a>
+        <ul>
+            <li>配置上线文件</li>
+            <li>从dest拷贝到online</li>
+            <li>上线</li>
+        </ul>
+    </div>
+</div>
+<div class="j_operate_step"></div>
+{{??it.operate}}
+<div class="container forms ui-panel">
+    <div class="ui-panel-hd">操作详情</div>
+    <div class="ui-panel-bd">
+        <div class="three-w j_online">&nbsp;</div>
+        <div class="three-w j_config">&nbsp;</div>
+        <div class="three-w j_result">&nbsp;</div>
+    </div>
+</div>
+{{?}}

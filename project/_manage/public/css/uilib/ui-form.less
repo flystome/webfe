@@ -1,0 +1,209 @@
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+          box-shadow: @shadow;
+}
+.box-sizing(@boxmodel) {
+  -webkit-box-sizing: @boxmodel;
+     -moz-box-sizing: @boxmodel;
+          box-sizing: @boxmodel;
+}
+.transition(@transition) {
+  -webkit-transition: @transition;
+       -o-transition: @transition;
+          transition: @transition;
+}
+.user-select(@select) {
+  -webkit-user-select: @select;
+     -moz-user-select: @select;
+      -ms-user-select: @select; // IE10+
+          user-select: @select;
+}
+.tab-focus() {
+  // Default
+  outline: thin dotted;
+  // WebKit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+
+
+
+
+
+
+
+//表单元素
+//表单预定义变量
+@input-width: 200px;
+@input-bdcol: #c1c1c1;
+@select-width: 220px;
+@form-group-margin-bottom: 15px;
+@label-box-spacing: 20px;
+//三种表单，垂直表单，水平排列表单，内联表单
+.ui-form {}
+//表单组
+.ui-form-item {
+  margin-bottom: @form-group-margin-bottom;
+  line-height: 24px;
+  .clearfix();
+}
+//表单三块 label box ext
+.ui-form-label {
+  float: left;
+  width: 20%;
+  text-align: right;
+  font-size: 14px;
+  line-height: 34px;
+  min-height: 1px;
+  .ui-form-required {
+    color: #ff0000;
+    font-family: 'SimSun';
+    margin-right: 6px;
+    margin-left: 6px;
+  }
+}
+.ui-form-box{
+  float: left;
+  box-sizing: border-box;
+  width: 60%;
+  padding-left: @label-box-spacing;
+  >*{
+    vertical-align: middle;
+  }
+  .ui-form-required {
+    color: #ff0000;
+    font-family: 'SimSun';
+    margin-right: 6px;
+    margin-left: 6px;
+  }
+}
+.ui-form-ext{
+  float: left;
+  width: 20%;
+  box-sizing: border-box;
+  padding-top: 10px;
+}
+//表单交互项
+.ui-form-control{
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  .box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075));
+  .transition(border-color ease-in-out .15s box-shadow ease-in-out .15s);
+  &:focus{
+    border-color: #66afe9;
+    outline: 0;
+    .box-shadow(~"inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 8px rgba(102, 175, 233, 0.6)");
+  }
+}
+textarea.ui-form-control{
+  height: auto;
+}
+.ui-form-checkbox{
+  position: relative;
+  display: block;
+  margin: 10px auto;
+  line-height: 1;
+  label{cursor: pointer;}
+  input[type=checkbox],
+  input[type=checkbox]{
+    margin-right: 5px;
+  }
+}
+.ui-form-text {
+  line-height: 34px;
+}
+
+//水平排列表单
+.ui-form-inline {
+  .ui-form-group{
+    margin-bottom: 10px;
+  }
+  .ui-form-item{
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    padding-bottom: 0;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  .ui-form-control,.ui-form-text{
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+}
+//垂直堆叠表单
+.ui-form-stack {}
+.ui-form-stack {
+  .ui-form-item {
+    width: 100%;
+    &.ui-form-justify {
+      input {
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+      span {
+        vertical-align: middle;
+      }
+      .ui-form-jleft {
+        float: left;
+      }
+      .ui-form-jright {
+        float: right;
+        a {
+          color: #2D99C1;
+        }
+      }
+    }
+    .ui-form-input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 10px;
+      line-height: 34px;
+      color: #595959;
+      border: 1px solid @input-bdcol;
+      border-radius: 3px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+      transition: all 0.3s ease-out;
+      -webkit-transition: all 0.3s ease-out;
+      -moz-transition: all 0.3s ease-out;
+      &:focus {
+        border-color: #03A9F4;
+        box-shadow: 0 0 15px #03A9F4;
+        -webkit-box-shadow: 0 0 15px #03A9F4;
+        -moz-box-shadow: 0 0 15px #03a9f4;
+      }
+    }
+    .ui-tiptext {
+      display: inline-block;
+      margin: 5px 0;
+    }
+  }
+}

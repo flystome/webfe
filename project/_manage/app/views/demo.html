@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    var numsets = document.getElementById("numsets");
+    var max = document.getElementById("max");
+    var min = document.getElementById("min");
+    var Data = {
+        init: function() {
+            this.interval(1000);
+        },
+        pool: [],
+        maxCount: 10000,
+        holdCount: 100,
+        generate: function() {
+            var num = Math.ceil(Math.random() * 10000);
+            this.pool.push(num);
+            if (this.pool.length > this.maxCount) {
+                this.pool.splice(0, this.pool.length - holdCount);
+            }
+        },
+        interval: function(interTime) {
+            var self = this;
+            setInterval(function() {
+                self.generate();
+            }, interTime);
+        }
+    }
+
+    function getNum(count, Data) {
+        var data = Data.pool;
+        Data.holdCount = count;
+        var sets = data.slice(data.length - count, data.length);
+        console.log(sets);
+        console.log("Max is : ", Math.max.apply(null, sets));
+        console.log("Min is : ", Math.min.apply(null, sets));
+    }
+
+    Data.init();
+
+    getNum(10, Data);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+@global-font-family: "Microsoft YaHei";
+@global-font-size: 14px;
+@global-line-height: 1.42857143;
+@global-font-color: #333;
+@link-color: darken(#428bca, 6.5%); // #337ab7;
+@link-hover-color: darken(@link-color, 15%);
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+  padding: 0;
+  margin: 0;
+}
+body, textarea, input, select, option {
+  font-size: @global-font-size;
+  color: @global-font-color;
+  font-family: @global-font-family;
+  line-height: @global-line-height;
+}
+a {
+  text-decoration: none;
+  color: @link-color;
+}
+a:hover {
+  color: @link-hover-color;
+  text-decoration: none;
+}
+table {
+  border-collapse: collapse;
+}
+fieldset, img {
+  border: 0;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+  font-weight: normal;
+  font-style: normal;
+}
+li {
+  list-style-type: none;
+}
+caption, th {
+  text-align: left;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+}
+a, textarea, input {
+  outline: none;
+}
+textarea {
+  overflow: auto;
+  resize: none;
+}
+
+

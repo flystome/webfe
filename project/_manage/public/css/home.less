@@ -1,0 +1,127 @@
+html,
+body,
+.g_container {
+  height: 100%;
+}
+.g_container {
+  background: url('../img/home_bg.png') top center #F7FBF5;
+}
+.logo {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  .slug {
+    transform: translateX(-50%) rotateY(0deg);
+    text-shadow: 1px 3px 10px #f1f1f1;
+    color: #fff;
+    font-size: 3em;
+    position: absolute;
+    z-index: 999;
+    animation: rotateY 5s ease-in-out infinite 2s;
+  }
+}
+.cube {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  transform-origin: 50px 50px;
+  transform: rotateX(-33.5deg) rotateY(45deg);
+  transform-style: preserve-3d;
+  animation: slowspin 5s ease-in-out infinite 2s;
+  margin: -50px 0 0 -50px;
+  top: 50%;
+  left: 50%;
+  li,
+  & {
+    position: absolute;
+    display: block;
+  }
+  li {
+    width: 75pt;
+    height: 75pt;
+    text-align: center;
+    line-height: 75pt;
+    font-size: 4em;
+    color: #f20;
+    transition: transform 1s ease-in-out;
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      width: 75pt;
+      height: 75pt;
+      backface-visibility: hidden;
+      background-color: rgba(201, 233, 251, .5);
+      transition: transform 1s ease-in-out;
+    }
+  }
+  .back,
+  .front,
+  .left,
+  .right,
+  .top {
+    background: radial-gradient(transparent 30%, rgba(16, 47, 91, .2) 100%);
+  }
+  .front {
+    transform: translateZ(50px);
+  }
+  .back {
+    transform: rotateX(-180deg) translateZ(50px) rotateZ(180deg);
+  }
+  .right {
+    transform: rotateY(90deg) translateZ(50px);
+  }
+  .left {
+    transform: rotateY(-90deg) translateZ(50px);
+  }
+  .top {
+    transform: rotateX(90deg) translateZ(50px);
+    &:after {
+      background-color: rgba(250, 252, 255, .5);
+    }
+  }
+  .bottom {
+    transform: rotateX(-90deg) translateZ(50px);
+  }
+}
+@keyframes slowspin {
+  0% {
+    transform: rotateX(-33.5deg) rotateY(45deg)
+  }
+  50% {
+    transform: rotateX(-33.5deg) rotateY(225deg)
+  }
+  to {
+    transform: rotateX(-33.5deg) rotateY(405deg)
+  }
+}
+@keyframes rotateY {
+  0% {
+    transform: translateX(-50%) rotateY(0deg)
+  }
+  50% {
+    transform: translateX(-50%) rotateY(180deg)
+  }
+  to {
+    transform: translateX(-50%) rotateY(360deg)
+  }
+}
+.main-con {
+  .container {
+    margin: 20px;
+    .box {
+      width: 200px;
+      height: 120px;
+      float: left;
+      margin: 0 20px;
+      cursor: pointer;
+      transition: all .2s;
+      &:hover {
+        background-color: #f1f4f9;
+      }
+    }
+  }
+}

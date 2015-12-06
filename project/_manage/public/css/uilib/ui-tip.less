@@ -1,0 +1,194 @@
+@bordercol: #b9c8d3;
+@bgcol: #f8fcff;
+.ui-poptip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 10px 20px;
+  border: 1px solid @bordercol;
+  border-radius: 2px;
+  box-shadow: 0 0 3px #ddd;
+  background-color: @bgcol;
+  color: #4d4d4d;
+  z-index: 101;
+  .ui-poptip-content {
+    padding-right: 10px;
+  }
+  .ui-poptip-close {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    overflow: hidden;
+    line-height: 10px;
+    text-align: center;
+    font-family: 'tahoma';
+    font-size: 14px;
+    border: 1px solid @bordercol;
+    border-radius: 3px;
+  }
+  .ui-poptip-arrow {
+    position: absolute;
+    z-index: 10;
+    em,
+    span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      border-style: solid;
+    }
+  }
+  .ui-poptip-arrow-left {
+    left: -6px;
+    top: 10px;
+    em,
+    span {
+      border-width: 6px 6px 6px 0;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      _border-top-color: tomato;
+      _border-bottom-color: tomato;
+      _filter: chroma(color=tomato);
+    }
+    em {
+      border-right-color: @bordercol;
+      left: -1px;
+    }
+    span {
+      border-right-color: @bgcol;
+    }
+  }
+  .ui-poptip-arrow-right {
+    right: 0px;
+    top: 10px;
+    em,
+    span {
+      border-width: 6px 0 6px 6px;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      _border-top-color: tomato;
+      _border-bottom-color: tomato;
+      _filter: chroma(color=tomato);
+    }
+    em {
+      border-left-color: @bordercol;
+      left: 1px;
+    }
+    span {
+      border-left-color: @bgcol;
+    }
+  }
+  .ui-poptip-arrow-up {
+    left: 20px;
+    top: -6px;
+    em,
+    span {
+      border-width: 0 6px 6px 6px;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      _border-left-color: tomato;
+      _border-right-color: tomato;
+      _filter: chroma(color=tomato);
+    }
+    em {
+      border-bottom-color: @bordercol;
+      top: -1px;
+    }
+    span {
+      border-bottom-color: @bgcol;
+    }
+  }
+  .ui-poptip-arrow-down {
+    left: 20px;
+    bottom: 0px;
+    em,
+    span {
+      border-width: 6px 6px 0 6px;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      _border-left-color: tomato;
+      _border-right-color: tomato;
+      _filter: chroma(color=tomato);
+    }
+    em {
+      border-top-color: @bordercol;
+      top: 1px;
+    }
+    span {
+      border-top-color: @bgcol;
+    }
+  }
+}
+.ui-tiptext {
+  display: inline-block;
+  vertical-align: top;
+  word-break: break-word;
+  word-wrap: break-word;
+  height: 17px;
+  line-height: 17px;
+  padding-left: 25px;
+  font-size: 12px;
+  color: #4d4d4d;
+  background: url('../img/ui-tiptext-icon.png') no-repeat -999px -999px;
+}
+.ui-tiptext-follow {
+  background: none;
+}
+.ui-tiptext-message {
+  background-position: 0 0;
+}
+.ui-tiptext-error {
+  background-position: 0 -17px;
+}
+.ui-tiptext-warn {
+  background-position: 0 -36px;
+}
+.ui-tiptext-success {
+  background-position: 0 -54px;
+}
+.ui-tiptext-question {
+  background-position: 0 -72px;
+}
+.ui-tiptext-stop {
+  background-position: 0 -90px;
+}
+.ui-tiptext-wait {
+  background-position: 0 -108px;
+}
+.ui-tiptext-container {
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+}
+.ui-tiptext-container-message {
+  border-color: #b2e2ea;
+  background-color: #e5f2f8;
+}
+.ui-tiptext-container-error {
+  border-color: #fadcd3;
+  background-color: #fdeee9;
+}
+.ui-tiptext-container-warn {
+  border-color: #e6e098;
+  background-color: #fefea4;
+}
+.ui-tiptext-container-success {
+  border-color: #b9e2a0;
+  background-color: #e7ffce;
+}
+.ui-tiptext-container-question {
+  border-color: #b2e2ea;
+  background-color: #e0f4ff;
+}
+.ui-tiptext-container-stop {
+  border-color: #fadcd3;
+  background-color: #fdeee9;
+}
+.ui-tiptext-container-wait {
+  border-color: #fae3cc;
+  background-color: #fff9d9;
+}

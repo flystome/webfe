@@ -1,0 +1,57 @@
+.ui-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  z-index: 999;
+}
+.ui-dialog {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  min-width: 300px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 6px;
+  z-index: 10002;
+  .ui-dialog-container {
+    background-color: #fff;
+  }
+  .ui-dialog-head {
+    height: 45px;
+    line-height: 45px;
+    overflow: hidden;
+    padding: 0 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #e1e1e1;
+    h2 {
+      font-weight: normal;
+      font-size: 18px;
+    }
+    span {
+      float: right;
+      cursor: pointer;
+    }
+  }
+  .ui-dialog-content {
+    background-color: #fff;
+    padding: 20px;
+  }
+  .ui-dialog-footer {
+    background-color: #fff;
+    padding: 20px;
+  }
+}
+.ui-iframe {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  z-index: 998;
+}

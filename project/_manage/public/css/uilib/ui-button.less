@@ -1,0 +1,161 @@
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+          box-shadow: @shadow;
+}
+.box-sizing(@boxmodel) {
+  -webkit-box-sizing: @boxmodel;
+     -moz-box-sizing: @boxmodel;
+          box-sizing: @boxmodel;
+}
+.transition(@transition) {
+  -webkit-transition: @transition;
+       -o-transition: @transition;
+          transition: @transition;
+}
+.user-select(@select) {
+  -webkit-user-select: @select;
+     -moz-user-select: @select;
+      -ms-user-select: @select; // IE10+
+          user-select: @select;
+}
+.tab-focus() {
+  // Default
+  outline: thin dotted;
+  // WebKit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+//默认按钮
+.ui-btn{
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  cursor: pointer;
+  .user-select(none);
+  .btn-size();//按钮大小
+  .btn-style();//按钮风格
+  .btn-state();//按钮状态
+}
+//按钮风格
+.ui-btn-success{
+  .btn-style(#fff;#5cb85c;#4cae4c);
+}
+.ui-btn-info{
+  .btn-style(#fff;#5bc0de;#46b8da);
+}
+.ui-btn-danger{
+  .btn-style(#fff;#d9534f;#d43f3a);
+}
+//按钮尺寸
+.ui-btn-lg{
+  .btn-size(10px;16px;18px;1.3333333;6px;);
+}
+.ui-btn-sm{
+  .btn-size(5px;10px;12px;1.5;3px;);
+}
+.ui-btn-xs{
+  .btn-size(1px;5px;12px;1.5;3px;);
+}
+//按钮生成函数
+.btn-size(@p-v:6px; @p-h:12px; @fz:14px; @lh:1.428571429; @br:4px) {
+  padding: @p-v @p-h;
+  font-size: @fz;
+  line-height: @lh;
+  border-radius: @br;
+}
+.btn-style(@color:#333; @background:#fff; @border:#ccc){
+  color: @color;
+  background-color: @background;
+  border-color: @border;
+  .btn-state(@color;@background;@border);
+  &.ui-btn-loading{
+    &:after{
+      content: '';
+      display: inline-block;
+      background-color: darken(@background, 20%);
+      vertical-align: middle;
+      width: 10px;
+      height: 10px;
+      margin: 0 3px;
+      -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+      animation: rotateplane 1.2s infinite ease-in-out;
+    }
+  }
+}
+.btn-state(@color:#333; @background:#fff; @border:#ccc){
+  &,
+  &:active,
+  &.active {
+    &:focus,
+    &.focus {
+      .tab-focus();
+    }
+  }
+  &:hover,&.hover{
+    color:@color;
+    background-color: darken(@background, 10%);
+    border-color: darken(@border, 12%);
+  }
+  &:focus,&.focus{
+    color:@color;
+    background-color: darken(@background, 10%);
+    border-color: darken(@border, 12%);
+  }
+  &:active,&.active {
+    color: @color;
+    background-color: darken(@background, 10%);
+    border-color: darken(@border, 12%);
+    outline: 0;
+    .tab-focus();
+    background-image: none;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+    &:hover,
+    &:focus,
+    &.focus {
+      color: @color;
+      background-color: darken(@background, 17%);
+      border-color: darken(@border, 25%);
+    }
+  }
+  &.disabled,
+  &[disabled]{
+    cursor: not-allowed;
+    .opacity(.65);
+    .box-shadow(none);
+  }
+
+  a& {
+    &.disabled {
+      pointer-events: none; // Future-proof disabling of clicks on `<a>` elements
+    }
+  }
+}
+
+@-webkit-keyframes rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+  } 50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+  } 100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+

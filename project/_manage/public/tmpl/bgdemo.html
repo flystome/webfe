@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta>
+	<title>Document</title>
+	<style>
+	html,body{padding: 0;margin: 0;font-size: 14px;}
+	p{margin: 0 auto;padding: 0;width: 50%;}
+	/*.dpitest{
+		width: 100%;
+		height: 20px;
+		font-size: 14px;
+		border: 1px solid black;
+	}
+*/	.head{
+		/*height: 197px;*/
+
+		background: url('./head.png') no-repeat ;
+	}
+	.loop{
+		/*min-height: 88px;*/
+		background: url('./loop.png') repeat-y ;
+	}
+	.foot{
+		/*height: 213px;*/
+		background: url('./foot.png') no-repeat ;
+	}
+
+	@media (max-width: 1080px){
+		.head,.loop,.foot{
+			background-size: 100%;
+			width: 100%;
+		}
+		.head{
+			height: 0;
+			padding-top: 18%;
+		}
+		.foot{
+			height: 0;
+			padding-top: 19.722222222222222%;
+		}
+	}
+	</style>
+	<script src='/static/js/common/jquery.js'></script>
+</head>
+<body>
+<div class="dpitest"></div>
+<div class="wrap">
+	<div class="container">
+		<div class="head"></div>
+		<div class="content loop">
+			<p>十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿</p>
+			<p>十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿</p>
+			<p>十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿</p>
+			<p>十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿</p>
+			<p>十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿</p>
+			<p>十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿</p>
+			<p>十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿十分适合首都华盛顿</p>
+		</div>
+		<div class="foot"></div>
+	</div>
+	<script>
+	var w=$('.dpitest').width();
+	$('.dpitest').text(w);
+	</script>
+</div>
+</body>
+</html>

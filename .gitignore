@@ -1,0 +1,6 @@
+# The IDE Project Directory
+.idea
+# The nodejs modules
+node_modules
+# The bower res
+bower_components
